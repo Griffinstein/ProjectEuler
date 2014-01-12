@@ -6,7 +6,7 @@
 
 package projecteuler;
 
-//import java.util.ArrayList;  
+import java.util.ArrayList;  
 //import java.util.Collections; 
 //import java.util.List;
 
@@ -17,9 +17,10 @@ package projecteuler;
 
 public class ProjectEuler {
 	  public static void main(String[] args) {
-		  //MultipleOf3And5();
-		  //EvenFibonacciNumbers();
-		  //LargestPrimeFactor();
+            //  MultipleOf3And5();
+            //  EvenFibonacciNumbers();
+            //  LargestPrimeFactor();
+              LargestPalindromeProduct();
 	  }
 	  
 	  public static void MultipleOf3And5() {
@@ -71,4 +72,49 @@ public class ProjectEuler {
 
 		  System.out.println(prime);
 	  }
+          
+          public static void LargestPalindromeProduct(){
+              int palindromic = 0;
+              boolean found = false;
+              for (int i = 999; i > 0; i--){
+                  for (int j = 999; j > 0; j--){
+                      found = TestPalindrome(i*j);
+                      if (found){
+                          int temp = i*j;
+                          if (palindromic < temp)
+                              palindromic = temp;
+                      }
+                  }
+              }
+              
+              System.out.println(palindromic);
+          }
+          
+          public static boolean TestPalindrome(int i){
+              int temp = i;
+              
+              ArrayList<Integer> digitList = new ArrayList<Integer>();
+              
+              while(true){
+                  digitList.add(temp % 10);
+                  temp = (int)(Math.floor(temp/10));
+                  if (temp == 0)
+                      break;
+              }
+              
+              int k = digitList.size() - 1;
+              
+              for (int j = 0; j < digitList.size(); j++){
+                  if (digitList.get(j) != digitList.get(k)){
+                      break;
+                  }
+                  
+                  if ((k - 1) == j || j == k)
+                      return true;
+                  
+                  k--;
+              }
+              
+              return false;
+          }
 }	
