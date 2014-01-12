@@ -20,9 +20,9 @@ public class ProjectEuler {
             //  MultipleOf3And5();
             //  EvenFibonacciNumbers();
             //  LargestPrimeFactor();
-            //  LargestPalindromeProduct();
+              LargestPalindromeProduct();
             //  SmallestMultiple();
-              SumSquareDifference();
+            //  SumSquareDifference();
 	  }
 	  
 	  public static void MultipleOf3And5() {
@@ -74,9 +74,9 @@ public class ProjectEuler {
           
           public static void LargestPalindromeProduct(){
               int palindromic = 0;
-              boolean found = false;
-              for (int i = 999; i > 100; i--){
-                  for (int j = 999; j > 100; j--){
+              boolean found;
+              for (int i = 100; i < 999; i++){
+                  for (int j = i; j < 999; j++){
                       found = TestPalindrome(i*j);
                       if (found){
                           int temp = i*j;
