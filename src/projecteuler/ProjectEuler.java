@@ -21,7 +21,8 @@ public class ProjectEuler {
             //  EvenFibonacciNumbers();
             //  LargestPrimeFactor();
             //  LargestPalindromeProduct();
-              SmallestMultiple();
+            //  SmallestMultiple();
+              SumSquareDifference();
 	  }
 	  
 	  public static void MultipleOf3And5() {
@@ -134,5 +135,32 @@ public class ProjectEuler {
 		  }
 		  
 		  System.out.println(output);
+	  }
+          
+          public static void SumSquareDifference() {
+              int output;
+              
+              output = SquareOfSum(100) - SumOfSquares(100);
+              
+              System.out.println(output);
+	  }
+          
+          public static int SumOfSquares(int i) {
+              int sum = 0;
+              for (int j = 1; j <= i; j++ ) {
+                  sum += (j * j);
+              }
+                 
+              return sum;
+	  }
+          
+          public static int SquareOfSum(int i) {
+              int sum = 0;
+              for (int j = 1; j <= i; j++ ) {
+                  sum += j;
+              }            
+              sum = sum * sum;
+                 
+              return sum;
 	  }
 }	
