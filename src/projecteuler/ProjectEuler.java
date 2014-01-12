@@ -6,9 +6,9 @@
 
 package projecteuler;
 
-import java.util.ArrayList;  
-import java.util.Collections; 
-import java.util.List;
+//import java.util.ArrayList;  
+//import java.util.Collections; 
+//import java.util.List;
 
 /**
  *
@@ -19,7 +19,7 @@ public class ProjectEuler {
 	  public static void main(String[] args) {
 		  //MultipleOf3And5();
 		  //EvenFibonacciNumbers();
-		  LargestPrimeFactor();
+		  //LargestPrimeFactor();
 	  }
 	  
 	  public static void MultipleOf3And5() {
@@ -57,19 +57,18 @@ public class ProjectEuler {
 	  
 	  public static void LargestPrimeFactor() {
 		  long prime = 600851475143L;
-		  long check = prime;
 		  
-		  ArrayList<Integer> intlist = new ArrayList<Integer>(); 
+		  //ArrayList<Integer> intlist = new ArrayList<Integer>(); 
 		  
-		  for (int i = 2; i < check; i++) {
-			  if (check%i == 0){
-                              intlist.add(i);
-                              check = check/i;
+		  for (int i = 2; i < prime; i++) {
+			  if (prime%i == 0){
+                              //intlist.add(i);
+                              prime = prime/i;
                               i = 2;
 			  }
 		  }
-                  intlist.add((int)check);
+                  //intlist.add((int)prime);
 
-		  System.out.println(check);
+		  System.out.println(prime);
 	  }
 }	
