@@ -17,10 +17,10 @@ import java.util.ArrayList;
 
 public class ProjectEuler {
 	  public static void main(String[] args) {
-            //  MultipleOf3And5();
+              MultipleOf3And5Alt();
             //  EvenFibonacciNumbers();
             //  LargestPrimeFactor();
-              LargestPalindromeProduct();
+            //  LargestPalindromeProduct();
             //  SmallestMultiple();
             //  SumSquareDifference();
 	  }
@@ -37,6 +37,20 @@ public class ProjectEuler {
 		  System.out.println(output);
 	  }
 	  
+          //http://projecteuler.net/overview=001 for details
+          public static void MultipleOf3And5Alt() {
+		  int tar = 999;       
+                  int output = NumOfMults(3,tar) + NumOfMults(5,tar) - NumOfMults(15,tar);
+		  
+		  System.out.println(output);
+	  }
+
+          public static int NumOfMults(int num, int X) {
+              int answer = (int)Math.floor(X/num);
+              answer = (num * (answer * (answer + 1))) / 2;
+              return answer;
+	  }
+          
 	  public static void EvenFibonacciNumbers() {
 		  int first = 1;
 		  int second = 2;
