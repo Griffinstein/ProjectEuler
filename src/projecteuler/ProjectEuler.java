@@ -20,7 +20,8 @@ public class ProjectEuler {
             //  MultipleOf3And5();
             //  EvenFibonacciNumbers();
             //  LargestPrimeFactor();
-              LargestPalindromeProduct();
+            //  LargestPalindromeProduct();
+              SmallestMultiple();
 	  }
 	  
 	  public static void MultipleOf3And5() {
@@ -113,4 +114,25 @@ public class ProjectEuler {
               
               return false;
           }
+          
+          public static void SmallestMultiple() {
+		  int output = 0;
+                  boolean found;
+                  
+		  while(true){
+                      output = output + 20;
+                      found = true;
+                      for (int i = 1; i <= 20; i++){
+                          if (output%i != 0){
+                              found = false;
+                              break;
+                          }
+                      }
+                      
+                      if (found)
+                          break;
+		  }
+		  
+		  System.out.println(output);
+	  }
 }	
