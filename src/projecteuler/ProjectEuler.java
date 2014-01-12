@@ -140,7 +140,9 @@ public class ProjectEuler {
           public static void SumSquareDifference() {
               int output;
               
-              output = SquareOfSum(100) - SumOfSquares(100);
+              //output = SquareOfSum(100) - SumOfSquares(100);
+              output = SquareOfSumAlt(100);
+              // see http://projecteuler.net/overview=006 for details
               
               System.out.println(output);
 	  }
@@ -162,5 +164,14 @@ public class ProjectEuler {
               sum = sum * sum;
                  
               return sum;
+	  }
+          
+          public static int SquareOfSumAlt(int i) {
+              int sum = (i * (i+1)) / 2;
+              sum = (sum * sum);
+              
+              int sq = (((2 * i) + 1)*(i + 1)*(i)) / 6;
+              
+              return (sum - sq);
 	  }
 }	
