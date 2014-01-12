@@ -26,13 +26,10 @@ public class ProjectEuler {
 	  public static void MultipleOf3And5() {
 		  int output = 0;
 		  for(int i=1; i<1000; i++ ) {
-			  
-			  if (i%3 == 0) {
+			  if (i%3 == 0) 
 				  output = output + i;
-			  }
-			  else if (i%5 == 0) {
-				  output = output + i; 
-			  } 
+			  else if (i%5 == 0) 
+				  output = output + i;
 		  }
 		  
 		  System.out.println(output);
@@ -59,7 +56,7 @@ public class ProjectEuler {
 	  public static void LargestPrimeFactor() {
 		  long prime = 600851475143L;
 		  
-		  //ArrayList<Integer> intlist = new ArrayList<Integer>(); 
+		  //ArrayList<Integer> intlist = new ArrayList<>(); 
 		  
 		  for (int i = 2; i < prime; i++) {
 			  if (prime%i == 0){
@@ -76,8 +73,8 @@ public class ProjectEuler {
           public static void LargestPalindromeProduct(){
               int palindromic = 0;
               boolean found = false;
-              for (int i = 999; i > 0; i--){
-                  for (int j = 999; j > 0; j--){
+              for (int i = 999; i > 100; i--){
+                  for (int j = 999; j > 100; j--){
                       found = TestPalindrome(i*j);
                       if (found){
                           int temp = i*j;
@@ -93,7 +90,7 @@ public class ProjectEuler {
           public static boolean TestPalindrome(int i){
               int temp = i;
               
-              ArrayList<Integer> digitList = new ArrayList<Integer>();
+              ArrayList<Integer> digitList = new ArrayList<>();
               
               while(true){
                   digitList.add(temp % 10);
@@ -105,9 +102,8 @@ public class ProjectEuler {
               int k = digitList.size() - 1;
               
               for (int j = 0; j < digitList.size(); j++){
-                  if (digitList.get(j) != digitList.get(k)){
+                  if (digitList.get(j) != digitList.get(k))
                       break;
-                  }
                   
                   if ((k - 1) == j || j == k)
                       return true;
