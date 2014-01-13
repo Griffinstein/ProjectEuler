@@ -294,31 +294,30 @@ public class ProjectEuler {
 
           public static void SummationOfPrimes(int limit) {
               ArrayList<Integer> primeList = new ArrayList<>();
-              boolean primer;
+              boolean prime;
               primeList.add(2);
               double maxRoot;
 
               for (int temp = 3; temp < limit; temp = temp + 2) {
-                  primer = true;
+                  prime = true;
                   maxRoot = Math.sqrt(primeList.get(primeList.size()-1));
                   for (int j = 1; j < primeList.size(); j++) {
                       if (temp%primeList.get(j) == 0){
-                          primer = false;
+                          prime = false;
                           break;
                       }
-                      if (maxRoot < primeList.get(j)){
+                      if (maxRoot < primeList.get(j))
                           break;
-                      }
                   }
 
-                  if (primer){
+                  if (prime){
                       primeList.add(temp);
                   }
               }
               
               long sum = 0;
               for (Integer j:primeList)
-                  sum = sum + j;
+                 sum = sum + j;
               
               System.out.println(sum);
           }
