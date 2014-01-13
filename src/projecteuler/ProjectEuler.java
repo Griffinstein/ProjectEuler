@@ -291,13 +291,17 @@ public class ProjectEuler {
               ArrayList<Integer> primeList = new ArrayList<>();
               boolean primer;
               primeList.add(2);
-              
+              final double maxRoot = Math.sqrt(limit);
 
               for (int temp = 3; temp < limit; temp = temp + 2) {
                   primer = true;
                   for (int j = 1; j < primeList.size(); j++) {
                       if (temp%primeList.get(j) == 0){
                           primer = false;
+                          break;
+                      }
+                      if (maxRoot < primeList.get(j)){
+                          primer = true;
                           break;
                       }
                   }
