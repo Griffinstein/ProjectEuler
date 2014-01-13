@@ -291,34 +291,28 @@ public class ProjectEuler {
               int temp = 1;
               ArrayList<Integer> primeList = new ArrayList<>();
               boolean primer;
-              boolean over = false;
               
               primeList.add(2);
               
-              while (true) {
-		  while (true){
-                      primer = true;
-                      temp = temp + 2;
-                      for (int j = 1; j < primeList.size(); j++) {
-			  if (temp%primeList.get(j) == 0){
-                              primer = false;
-                              break;
-			  }
-                      }
-                      
-                      if (primer){
-                          if (temp >= x){
-                              over = true;
-                              break;
-                          }
-                          else{
-                              primeList.add(temp);
-                              break;
-                          }
+
+              while (true){
+                  primer = true;
+                  temp = temp + 2;
+                  for (int j = 1; j < primeList.size(); j++) {
+                      if (temp%primeList.get(j) == 0){
+                          primer = false;
+                          break;
                       }
                   }
-                  if (over)
-                      break;
+
+                  if (primer){
+                      if (temp >= x){
+                          break;
+                      }
+                      else{
+                          primeList.add(temp);
+                      }
+                  }
               }
               
               long sum = 0;
