@@ -243,10 +243,9 @@ public class ProjectEuler {
                       break;
                   i++;
               }
-                  
               
               for (; i < 995; i++){
-                  if (digitList.get(i+4) == 0)
+                  if (digitList.get(i+4) == 0 || digitList.get(i+4) == 1)
                       i = i + 4;
                   else{
                       int newTemp = digitList.get(i) * 
