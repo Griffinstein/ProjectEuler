@@ -17,12 +17,13 @@ import java.util.ArrayList;
 
 public class ProjectEuler {
 	  public static void main(String[] args) {
-              MultipleOf3And5Alt();
+            //  MultipleOf3And5Alt();
             //  EvenFibonacciNumbers();
             //  LargestPrimeFactor();
             //  LargestPalindromeProduct();
             //  SmallestMultiple();
             //  SumSquareDifference();
+              GetPrimeAt(10001);
 	  }
 	  
 	  public static void MultipleOf3And5() {
@@ -188,4 +189,30 @@ public class ProjectEuler {
               
               return (sum - sq);
 	  }
+          
+          public static void GetPrimeAt(int x) {
+              int temp = 1;
+              ArrayList<Integer> primeList = new ArrayList<>();
+              boolean primer;
+              
+              for (int i = 0; i < x; i++) {
+		  while (true){
+                      primer = true;
+                      temp++;
+                      for (int j = 0; j < primeList.size(); j++) {
+			  if (temp%primeList.get(j) == 0){
+                              primer = false;
+                              break;
+			  }
+                      }
+                      
+                      if (primer){
+                          primeList.add(temp);
+                          break;
+                      }
+                  }
+              }
+              
+              System.out.println(primeList.get(x-1));
+          }
 }	
