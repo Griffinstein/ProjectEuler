@@ -265,7 +265,7 @@ public class ProjectEuler {
               boolean found = false;
               int output = 0;
               
-              for (int a = 1; a < 333; a++){
+              for (int a = 3; a < 333; a++){
                   for (int b = a+1; b < 500; b++){
                       for (int c = b+1; c < 500; c++){
                           if (a+b+c == 1000){
