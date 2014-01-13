@@ -26,8 +26,9 @@ public class ProjectEuler {
             //  SumSquareDifference();
             //  GetPrimeAt(10001);
             //  LargestProductSeries();
-              SpecialPythagoreanTripley();
-	  }
+            //  SpecialPythagoreanTripley();
+              SummationOfPrimes(2000000);
+          }
 	  
 	  public static void MultipleOf3And5() {
 		  int output = 0;
@@ -42,8 +43,8 @@ public class ProjectEuler {
 	  }
 	  
           public static void MultipleOf3And5Alt() {
-		  int tar = 999;       
-                  int output = NumOfMults(3,tar) + NumOfMults(5,tar) - NumOfMults(15,tar);
+		  int target = 999;       
+                  int output = NumOfMults(3,target) + NumOfMults(5,target) - NumOfMults(15,target);
 		  
 		  System.out.println(output);
                   //http://projecteuler.net/overview=001 for details
@@ -284,5 +285,46 @@ public class ProjectEuler {
               }
               
               System.out.println(output);
+          }
+
+          public static void SummationOfPrimes(int x) {
+              int temp = 1;
+              ArrayList<Integer> primeList = new ArrayList<>();
+              boolean primer;
+              boolean over = false;
+              
+              primeList.add(2);
+              
+              while (true) {
+		  while (true){
+                      primer = true;
+                      temp = temp + 2;
+                      for (int j = 1; j < primeList.size(); j++) {
+			  if (temp%primeList.get(j) == 0){
+                              primer = false;
+                              break;
+			  }
+                      }
+                      
+                      if (primer){
+                          if (temp >= x){
+                              over = true;
+                              break;
+                          }
+                          else{
+                              primeList.add(temp);
+                              break;
+                          }
+                      }
+                  }
+                  if (over)
+                      break;
+              }
+              
+              long sum = 0;
+              for (Integer j:primeList)
+                  sum = sum + j;
+              
+              System.out.println(sum);
           }
 }	
