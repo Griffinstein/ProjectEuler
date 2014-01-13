@@ -287,17 +287,14 @@ public class ProjectEuler {
               System.out.println(output);
           }
 
-          public static void SummationOfPrimes(int x) {
-              int temp = 1;
+          public static void SummationOfPrimes(int limit) {
               ArrayList<Integer> primeList = new ArrayList<>();
               boolean primer;
-              
               primeList.add(2);
               
 
-              while (true){
+              for (int temp = 3; temp < limit; temp = temp + 2) {
                   primer = true;
-                  temp = temp + 2;
                   for (int j = 1; j < primeList.size(); j++) {
                       if (temp%primeList.get(j) == 0){
                           primer = false;
@@ -306,12 +303,7 @@ public class ProjectEuler {
                   }
 
                   if (primer){
-                      if (temp >= x){
-                          break;
-                      }
-                      else{
-                          primeList.add(temp);
-                      }
+                      primeList.add(temp);
                   }
               }
               
