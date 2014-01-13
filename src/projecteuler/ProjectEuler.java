@@ -24,10 +24,10 @@ public class ProjectEuler {
             //  LargestPalindromeProduct();
             //  SmallestMultiple();
             //  SumSquareDifference();
-              GetPrimeAt(10001);
+            //  GetPrimeAt(10001);
             //  LargestProductSeries();
             //  SpecialPythagoreanTripley();
-            //  SummationOfPrimes(2000000);
+              SummationOfPrimes(2000000);
           }
 	  
 	  public static void MultipleOf3And5() {
@@ -296,10 +296,11 @@ public class ProjectEuler {
               ArrayList<Integer> primeList = new ArrayList<>();
               boolean primer;
               primeList.add(2);
-              final double maxRoot = Math.sqrt(limit);
+              double maxRoot;
 
               for (int temp = 3; temp < limit; temp = temp + 2) {
                   primer = true;
+                  maxRoot = Math.sqrt(primeList.get(primeList.size()-1));
                   for (int j = 1; j < primeList.size(); j++) {
                       if (temp%primeList.get(j) == 0){
                           primer = false;
