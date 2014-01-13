@@ -195,11 +195,13 @@ public class ProjectEuler {
               ArrayList<Integer> primeList = new ArrayList<>();
               boolean primer;
               
+              primeList.add(2);
+              
               for (int i = 0; i < x; i++) {
 		  while (true){
                       primer = true;
-                      temp++;
-                      for (int j = 0; j < primeList.size(); j++) {
+                      temp = temp + 2;
+                      for (int j = 1; j < primeList.size(); j++) {
 			  if (temp%primeList.get(j) == 0){
                               primer = false;
                               break;
