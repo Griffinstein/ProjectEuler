@@ -296,9 +296,16 @@ public class ProjectEuler {
               ArrayList<Integer> primeList = new ArrayList<>();
               boolean prime;
               primeList.add(2);
+              primeList.add(3);
               double maxRoot;
+              int increase = 2;
 
-              for (int temp = 3; temp < limit; temp = temp + 2) {
+              for (int temp = 5; temp < limit;) {
+                  temp += increase;
+                  if (increase == 2)
+                      increase = 4;
+                  else if (increase == 4)
+                      increase = 2;
                   prime = true;
                   maxRoot = Math.sqrt(primeList.get(primeList.size()-1));
                   for (int j = 1; j < primeList.size(); j++) {
