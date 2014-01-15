@@ -18,120 +18,40 @@ import java.math.BigInteger;
 
 public class ProjectEuler {
 	  public static void main(String[] args) {
-              EulerProblem solution = new Problem1(1000) {};
-              System.out.println(solution.getSolution());
-              System.out.println(solution.getAltSolution());
-            //  MultipleOf3And5Alt();
-            //  EvenFibonacciNumbers();
-            //  LargestPrimeFactor();
-            //  LargestPalindromeProduct();
-            //  SmallestMultiple();
+            
+             /**EulerProblem solution = new Problem1(1000) {};
+             *  System.out.println(solution.getSolution());
+             *  System.out.println(solution.getAltSolution());  
+             *  @Problem 1: MultipleOf3And5
+             */
+              
+             /**EulerProblem solution = new Problem2(4000000) {};
+             *  System.out.println(solution.getSolution()); 
+             *  @Problem 2: EvenFibonacciNumbers
+             */
+              
+             /**EulerProblem solution = new Problem3() {};
+             *  System.out.println(solution.getSolution()); 
+             *  @Problem 3: LargestPrimeFactor
+             */
+
+             /**EulerProblem solution = new Problem4() {};
+             *  System.out.println(solution.getSolution()); 
+             *  @Problem 4: LargestPalindromeProduct
+             */
+
+             /**EulerProblem solution = new Problem5(20) {};
+             *  System.out.println(solution.getSolution()); 
+             *  @Problem 5: SmallestMultiple
+             */
+              
+              
             //  SumSquareDifference();
             //  GetPrimeAt(10001);
             //  LargestProductSeries();
             //  SpecialPythagoreanTripley();
             //  SummationOfPrimes(2000000);
           }
-          
-	  public static void EvenFibonacciNumbers() {
-		  int first = 1;
-		  int second = 2;
-		  int next;
-		  int sum = 2;
-		  
-		  while (true){
-			  next = second + first;
-			  if (next > 4000000)
-				  break;
-			  if (next % 2 == 0)
-				  sum += next;
-			  first = second;
-			  second = next;
-		  }
-		  System.out.println(sum);
-	  }
-	  
-	  public static void LargestPrimeFactor() {
-		  long prime = 600851475143L;
-		  
-		  //ArrayList<Integer> intlist = new ArrayList<>(); 
-		  
-		  for (int i = 2; i < prime; i++) {
-			  if (prime%i == 0){
-                              //intlist.add(i);
-                              prime = prime/i;
-                              i = 2;
-			  }
-		  }
-                  //intlist.add((int)prime);
-
-		  System.out.println(prime);
-	  }
-          
-          public static void LargestPalindromeProduct(){
-              int palindromic = 0;
-              boolean found;
-              for (int i = 100; i < 999; i++){
-                  for (int j = i; j < 999; j++){
-                      found = TestPalindrome(i*j);
-                      if (found){
-                          int temp = i*j;
-                          if (palindromic < temp)
-                              palindromic = temp;
-                      }
-                  }
-              }
-              
-              System.out.println(palindromic);
-          }
-          
-          public static boolean TestPalindrome(int i){
-              int temp = i;
-              
-              ArrayList<Integer> digitList = new ArrayList<>();
-              
-              while(true){
-                  digitList.add(temp % 10);
-                  temp = (int)(Math.floor(temp/10));
-                  if (temp == 0)
-                      break;
-              }
-              
-              int k = digitList.size() - 1;
-              
-              for (int j = 0; j < digitList.size(); j++){
-                  if (digitList.get(j) != digitList.get(k))
-                      break;
-                  
-                  if ((k - 1) == j || j == k)
-                      return true;
-                  
-                  k--;
-              }
-              
-              return false;
-          }
-          
-          public static void SmallestMultiple() {
-		  int output = 0;
-                  boolean found;
-                  
-		  while(true){
-                      output = output + 20;
-                      found = true;
-                      for (int i = 1; i <= 20; i++){
-                          if (output%i != 0){
-                              found = false;
-                              break;
-                          }
-                      }
-                      
-                      if (found)
-                          break;
-		  }
-		  
-		  System.out.println(output);
-	  }
           
           public static void SumSquareDifference() {
               int output;
