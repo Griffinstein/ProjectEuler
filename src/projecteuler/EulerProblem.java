@@ -13,4 +13,5 @@ package projecteuler;
 
 public interface EulerProblem {
     public String getSolution();
+    public String getAltSolution();
 }

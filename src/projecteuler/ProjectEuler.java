@@ -18,6 +18,9 @@ import java.math.BigInteger;
 
 public class ProjectEuler {
 	  public static void main(String[] args) {
+              EulerProblem solution = new Problem1(1000) {};
+              System.out.println(solution.getSolution());
+              System.out.println(solution.getAltSolution());
             //  MultipleOf3And5Alt();
             //  EvenFibonacciNumbers();
             //  LargestPrimeFactor();
@@ -27,34 +30,8 @@ public class ProjectEuler {
             //  GetPrimeAt(10001);
             //  LargestProductSeries();
             //  SpecialPythagoreanTripley();
-              SummationOfPrimes(2000000);
+            //  SummationOfPrimes(2000000);
           }
-	  
-	  public static void MultipleOf3And5() {
-		  int output = 0;
-		  for(int i=1; i<1000; i++ ) {
-			  if (i%3 == 0) 
-				  output = output + i;
-			  else if (i%5 == 0) 
-				  output = output + i;
-		  }
-		  
-		  System.out.println(output);
-	  }
-	  
-          public static void MultipleOf3And5Alt() {
-		  int target = 999;       
-                  int output = NumOfMults(3,target) + NumOfMults(5,target) - NumOfMults(15,target);
-		  
-		  System.out.println(output);
-                  //http://projecteuler.net/overview=001 for details
-	  }
-
-          public static int NumOfMults(int num, int X) {
-              int answer = (int)Math.floor(X/num);
-              answer = (num * (answer * (answer + 1))) / 2;
-              return answer;
-	  }
           
 	  public static void EvenFibonacciNumbers() {
 		  int first = 1;
