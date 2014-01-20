@@ -58,29 +58,29 @@ public class Problem11 implements EulerProblem {
     private int NumberTest(int x, int y){
         int returned = 0;
         
-        int up = MoveUp(x,y);
+        //int up = MoveUp(x,y);
         int down = MoveDown(x,y);
-        int left = MoveLeft(x,y);
+        //int left = MoveLeft(x,y);
         int right = MoveRight(x,y);
-        int upleft = MoveUpLeft(x,y);
+        //int upleft = MoveUpLeft(x,y);
         int downleft = MoveDownLeft(x,y);
-        int upright = MoveUpRight(x,y);
+        //int upright = MoveUpRight(x,y);
         int downright = MoveDownRight(x,y);
         
-        if (returned < up)
-            returned = up;
+        //if (returned < up)
+        //    returned = up;
         if (returned < down)
             returned = down;
-        if (returned < left)
-            returned = left;
+        //if (returned < left)
+        //    returned = left;
         if (returned < right)
             returned = right;
-        if (returned < upleft)
-            returned = upleft;
+        //if (returned < upleft)
+        //    returned = upleft;
         if (returned < downleft)
             returned = downleft;
-        if (returned < upright)
-            returned = upright;
+        //if (returned < upright)
+        //    returned = upright;
         if (returned < downright)
             returned = downright;
         
