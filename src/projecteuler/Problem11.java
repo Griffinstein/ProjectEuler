@@ -44,7 +44,7 @@ public class Problem11 implements EulerProblem {
         
         for (int i = 0; i<20; i++){
             for (int j = 0; j<20; j++){
-                if (_grid[i][j]>50){
+                if (_grid[i][j]>80){
                     temp = NumberTest(i, j);
                     if (temp > result)
                         result = temp;
