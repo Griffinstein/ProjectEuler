@@ -44,35 +44,103 @@ public class Problem11 implements EulerProblem {
         
         for (int i = 0; i<20; i++){
             for (int j = 0; j<20; j++){
-                temp = NumberTest(_grid[i][j]);
-                if (temp > result)
-                    result = temp;
+                if (_grid[i][j]>50){
+                    temp = NumberTest(i, j);
+                    if (temp > result)
+                        result = temp;
+                }
             }
         }
         
         return result;
     }
 
-    private int NumberTest(int selected){
-        int i = 0;
+    private int NumberTest(int x, int y){
+        int returned = 0;
         
-        if (selected<50)
-            return 0;
-        else
-            return 10;
+        int up = MoveUp(x,y);
+        int down = MoveDown(x,y);
+        int left = MoveLeft(x,y);
+        int right = MoveRight(x,y);
+        int upleft = MoveUpLeft(x,y);
+        int downleft = MoveDownLeft(x,y);
+        int upright = MoveUpRight(x,y);
+        int downright = MoveDownRight(x,y);
+        
+        if (returned < up)
+            returned = up;
+        if (returned < down)
+            returned = down;
+        if (returned < left)
+            returned = left;
+        if (returned < right)
+            returned = right;
+        if (returned < upleft)
+            returned = upleft;
+        if (returned < downleft)
+            returned = downleft;
+        if (returned < upright)
+            returned = upright;
+        if (returned < downright)
+            returned = downright;
+        
+        return returned;
     }
     
     private int MoveUp(int x, int y){
-        return 0;
+        if (x >= 3)
+            return _grid[x][y] * _grid[x-1][y] * _grid[x-2][y] *_grid[x-3][y];
+        else
+            return 0;
     }
+    
     private int MoveDown(int x, int y){
-        return 0;
+        if (x <= 16)
+            return _grid[x][y] * _grid[x+1][y] * _grid[x+2][y] *_grid[x+3][y];
+        else
+            return 0;
     }
-    private int MoveRight(int x, int y){
-        return 0;
-    }
+    
     private int MoveLeft(int x, int y){
-        return 0;
+        if (y >= 3)
+            return _grid[x][y] * _grid[x][y-1] * _grid[x][y-2] *_grid[x][y-3];
+        else
+            return 0;
+    }
+    
+    private int MoveRight(int x, int y){
+        if (y <= 16)
+            return _grid[x][y] * _grid[x][y+1] * _grid[x][y+2] *_grid[x][y+3];
+        else
+            return 0;
+    }
+
+    private int MoveUpLeft(int x, int y){
+        if (x >= 3 && y >= 3)
+            return _grid[x][y] * _grid[x-1][y-1] * _grid[x-2][y-2] *_grid[x-3][y-3];
+        else
+            return 0;
+    }
+    
+    private int MoveDownLeft(int x, int y){
+        if (x <= 16 && y >= 3)
+            return _grid[x][y] * _grid[x+1][y-1] * _grid[x+2][y-2] *_grid[x+3][y-3];
+        else
+            return 0;
+    }
+    
+    private int MoveUpRight(int x, int y){
+        if (x >= 3 && y <= 16)
+            return _grid[x][y] * _grid[x-1][y+1] * _grid[x-2][y+2] *_grid[x-3][y+3];
+        else
+            return 0;
+    }
+    
+    private int MoveDownRight(int x, int y){
+        if (x <= 16 && y <= 16)
+            return _grid[x][y] * _grid[x+1][y+1] * _grid[x+2][y+2] *_grid[x+3][y+3];
+        else
+            return 0;
     }
     
     
