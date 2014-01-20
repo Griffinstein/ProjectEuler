@@ -6,11 +6,6 @@
 
 package projecteuler;
 
-import java.util.ArrayList;  
-import java.math.BigInteger;  
-//import java.util.Collections; 
-//import java.util.List;
-
 /**
  *
  * @author Ed
@@ -70,5 +65,10 @@ public class ProjectEuler {
          *  System.out.println(solution.getSolution()); 
          *  @Problem 10: SummationOfPrimes
          */
+
+         EulerProblem solution = new Problem11() {};
+           System.out.println(solution.getSolution()); 
+         /*  @Problem 11: LargestProductInAGrid
+         */      
       }          
 }	
