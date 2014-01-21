@@ -66,9 +66,14 @@ public class ProjectEuler {
          *  @Problem 10: SummationOfPrimes
          */
 
-         EulerProblem solution = new Problem11() {};
-           System.out.println(solution.getSolution()); 
-         /*  @Problem 11: LargestProductInAGrid
+         /*EulerProblem solution = new Problem11() {};
+         *  System.out.println(solution.getSolution()); 
+         *  @Problem 11: LargestProductInAGrid
          */      
+
+         EulerProblem solution = new Problem12(5) {};
+           System.out.println(solution.getSolution()); 
+         /*  @Problem 12: HighlyDivisibleTriangularNumber
+         */   
       }          
 }	
