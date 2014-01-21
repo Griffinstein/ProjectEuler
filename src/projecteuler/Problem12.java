@@ -29,13 +29,15 @@ public class Problem12 implements EulerProblem {
     
     private int divisibleTriangularNum(){
         int result = 0;
-        
+        result = generateTriangularNum();
         
         while (true){
-            result = generateTriangularNum();
             
             if (workOutDivisors(result) > max)
                 break;
+            
+            result = result + count;
+            count++;
         }
         
         return result;
@@ -54,16 +56,17 @@ public class Problem12 implements EulerProblem {
     }
     
     private int workOutDivisors(int num){
-        int divisors = 6;
+        int divisors = 0;
         int halved = (int)Math.ceil(num/2);
-           
+        int numtx = (int)Math.sqrt(num);
         
-        if (num%2 == 0 && num%3 == 0 && num%4 == 0 && num%5 == 0 ){
-            for (int i = 6; i <= halved; i++){
-                if (num%i == 0)
-                    divisors ++;
-            }
+        for (int i = 1; i <= numtx; i++){
+            if (num%i == 0)
+                divisors += 2;
         }
+        
+        if (numtx*numtx == num)
+            divisors++;
         
         return divisors;
     }
