@@ -71,7 +71,7 @@ public class ProjectEuler {
          *  @Problem 11: LargestProductInAGrid
          */      
 
-         EulerProblem solution = new Problem12(5) {};
+         EulerProblem solution = new Problem12(500) {};
            System.out.println(solution.getSolution()); 
          /*  @Problem 12: HighlyDivisibleTriangularNumber
          */   
