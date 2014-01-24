@@ -6,8 +6,6 @@
 
 package projecteuler;
 
-import java.lang.Math;
-
 /**
  *
  * @author Ed
