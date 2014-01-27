@@ -27,7 +27,7 @@ public class Problem13 implements EulerProblem{
         int temp = 0;
         int sum;
         
-        num = a*150;
+        num = a * 150;
         
         int[] A = {5,8,4,9,6};
         int[] B = {9,3,7,6,0};
