@@ -23,17 +23,18 @@ public class Problem14 implements EulerProblem{
     
     private int CollatzSequence(){
         int answer = 0;
-        int temp;
+        long temp;
         int tempTerms = 0;
         arrayTerms = new int[max+1];
         
         for (int i = 1; i < max; i++){
+            
             temp = i;
             while (temp != 1){
                 temp = collSeq(temp);
                 
                 if(temp < i){
-                    terms = terms + arrayTerms[temp];
+                    terms = terms + arrayTerms[(int)temp];
                     break;
                 }
                 
@@ -53,18 +54,18 @@ public class Problem14 implements EulerProblem{
         return answer;
     }
 
-    private int collSeq(int x){
+    private long collSeq(long x){
         if (x % 2 == 0)
             return evenNum(x);
         else
             return oddNum(x);
     }
     
-    private int evenNum(int x){
+    private long evenNum(long x){
         return (x/2);
     }
 
-    private int oddNum(int x){
+    private long oddNum(long x){
         return ((x * 3) + 1);
     }
     
