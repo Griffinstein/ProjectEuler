@@ -32,7 +32,7 @@ public class Problem13 implements EulerProblem{
     int a = 58496;
     int b = 93760;
     final static String FILE_NAME = "C:\\Users\\Ed\\Documents\\NetBeansProjects\\ProjectEuler\\src\\projecteuler\\Problem13.txt";
-    final static Charset ENCODING = StandardCharsets.UTF_8;
+    private int[][] _numbers;
     
     @Override
     public String getSolution() {
@@ -44,7 +44,9 @@ public class Problem13 implements EulerProblem{
         int temp = 0;
         int sum;
         
-        num = a * 150;
+        //num = a * 150;
+        
+        _numbers = new int[150][50];
         
         //BufferedReader reader = new BufferedReader(new FileReader("C:\Users\Ed\Documents\NetBeansProjects\ProjectEuler\src\projecteuler\Problem13.txt"));
         //String line = null;
@@ -58,7 +60,6 @@ public class Problem13 implements EulerProblem{
         //    integers.add(fileScanner.nextInt());
         //}
         
-        
         //treat as a small file
         //List<String> lines = text.readSmallTextFile(FILE_NAME);
         //log(lines);
@@ -66,15 +67,29 @@ public class Problem13 implements EulerProblem{
         //text.writeSmallTextFile(lines, FILE_NAME);
         
         
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME)))
+        {
+            String sCurrentLine;
+            while ((sCurrentLine = br.readLine()) != null) {
+                for (int i = 0; i < sCurrentLine.length(); i++){
+                    _numbers[temp][i] = sCurrentLine.charAt(i) - '0';
+                }
+                temp++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
         
-        int[] A = {5,8,4,9,6};
-        int[] B = {9,3,7,6,0};
-        int[] C = new int[5];
+        temp = 0;
         
-        for (int i = 4; i>=0; i--){
+        //int[] A = {5,8,4,9,6};
+        //int[] B = {9,3,7,6,0};
+        int[] C = new int[50];
+        
+        for (int i = 49; i>=0; i--){
             sum = 0;
             for (int j = 0; j < 150; j++){
-                sum = sum + A[i];
+                sum = sum + _numbers[j][i];//A[i];
             }
             C[i] = (sum + temp)%10;
             temp = (int)Math.floor((sum + temp)/10);
@@ -82,21 +97,10 @@ public class Problem13 implements EulerProblem{
 
         C = C;
         
-        return num;
-    }
-
-    List<String> readSmallTextFile(String aFileName) throws IOException {
-        Path path = Paths.get(aFileName);
-        return Files.readAllLines(path, ENCODING);
-    }
-    
-    void writeSmallTextFile(List<String> aLines, String aFileName) throws IOException {
-        Path path = Paths.get(aFileName);
-        Files.write(path, aLines, ENCODING);
-    }
-
-    private static void log(Object aMsg){
-        System.out.println(String.valueOf(aMsg));
+        
+        return temp;
+        
+        //return 0;
     }
     
     @Override
