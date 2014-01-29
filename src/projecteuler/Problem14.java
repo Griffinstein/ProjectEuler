@@ -12,8 +12,9 @@ package projecteuler;
  */
 public class Problem14 implements EulerProblem{
 
-    private final int max = 1000000;
+    private final int max = 100000;
     private int terms = 1;
+    private int[] arrayTerms;
     
     @Override
     public String getSolution() {
@@ -24,18 +25,29 @@ public class Problem14 implements EulerProblem{
         int answer = 0;
         int temp;
         int tempTerms = 0;
+        arrayTerms = new int[max+1];
         
         for (int i = 1; i < max; i++){
             temp = i;
             while (temp != 1){
                 temp = collSeq(temp);
+                
+                if(temp < i){
+                    terms = terms + arrayTerms[temp];
+                    break;
+                }
+                
                 terms++;
             }
+            
+            arrayTerms[i] = terms;
+            
             if (terms > tempTerms){
                 tempTerms = terms;
-                terms = 1;
                 answer = i;
             }
+            
+            terms = 1;
         }
         
         return answer;
