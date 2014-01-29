@@ -20,7 +20,7 @@ public class Problem17 implements EulerProblem {
     private int NumberLetterCounts(){
         int answer = 0;
         String[] numbers = new String[1000];
-        int numDigits, first, second, third;
+        int numDigits, first, second, third, forth;
         String temp, secondtemp;
         int lastTwo;
         secondtemp = "0";
@@ -36,7 +36,11 @@ public class Problem17 implements EulerProblem {
                 secondtemp = temp.substring(1);
 
             lastTwo = Integer.parseInt(secondtemp);
-            
+            if (numDigits > 3){
+                forth = temp.charAt(temp.length()-4) - '0';
+                numbers[i-1] = getWord(forth) + " " + getWord(1000);
+                break;
+            }
             if (numDigits > 2){
                 third = temp.charAt(temp.length()-3) - '0';
                 numbers[i-1] = getWord(third) + " " + getWord(100);
@@ -51,7 +55,7 @@ public class Problem17 implements EulerProblem {
                     else
                         numbers[i-1] = getWord(second) + " ";
                 }
-                else{
+                else if (lastTwo >= 10){
                     second = lastTwo;
                     if (numbers[i-1] != null)
                         numbers[i-1] = numbers[i-1] + getWord(second);
@@ -59,7 +63,7 @@ public class Problem17 implements EulerProblem {
                         numbers[i-1] = getWord(second);
                 }
             }
-            if (numDigits > 0 && (secondtemp < 10 || secondtemp > 20)){
+            if (numDigits > 0 && (lastTwo < 10 || lastTwo > 20)){
                 first = temp.charAt(temp.length()-1) - '0';
                 if (numbers[i-1] != null)
                     numbers[i-1] = numbers[i-1] + getWord(first);
@@ -67,6 +71,10 @@ public class Problem17 implements EulerProblem {
                     numbers[i-1] = getWord(first);
             }
             
+        }
+        
+        for (int i = 0; i < 1000; i++) {
+            answer = answer + (numbers[i].replaceAll("\\s+","")).length();
         }
         
         return answer;
