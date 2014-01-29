@@ -91,9 +91,14 @@ public class ProjectEuler {
          *  @Problem 15: LatticePaths
          */
           
-         EulerProblem solution = new Problem16() {};
+         /*EulerProblem solution = new Problem16() {};
+         * System.out.println(solution.getSolution()); 
+         *  @Problem 16: PowerDigitSum
+         */
+          
+         EulerProblem solution = new Problem17() {};
           System.out.println(solution.getSolution()); 
-         /*  @Problem 16: PowerDigitSum
+         /*  @Problem 17: NumberLetterCounts
          */
       }          
 }	
