@@ -12,7 +12,7 @@ package projecteuler;
  */
 public class Problem14 implements EulerProblem{
 
-    private final int max = 100000;
+    private final int max = 1000000;
     private int terms = 1;
     private int[] arrayTerms;
     
@@ -36,8 +36,7 @@ public class Problem14 implements EulerProblem{
                 if(temp < i){
                     terms = terms + arrayTerms[(int)temp];
                     break;
-                }
-                
+                }                
                 terms++;
             }
             
@@ -46,8 +45,7 @@ public class Problem14 implements EulerProblem{
             if (terms > tempTerms){
                 tempTerms = terms;
                 answer = i;
-            }
-            
+            }            
             terms = 1;
         }
         
