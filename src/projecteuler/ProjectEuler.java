@@ -81,9 +81,14 @@ public class ProjectEuler {
          *  @Problem 13: LargeSum
          */
           
-         EulerProblem solution = new Problem14() {};
+         /*EulerProblem solution = new Problem14() {};
+         * System.out.println(solution.getSolution()); 
+         *  @Problem 14: LargeSum
+         */
+          
+         EulerProblem solution = new Problem15() {};
           System.out.println(solution.getSolution()); 
-         /*  @Problem 14: LargeSum
+         /*  @Problem 15: LatticePaths
          */
       }          
 }	
