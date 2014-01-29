@@ -24,7 +24,7 @@ public class Problem13 implements EulerProblem{
         return "" + LargeSum();
     }
     
-    private int LargeSum() {
+    private String LargeSum() {
         int temp = 0;
         int sum;
         
@@ -56,7 +56,14 @@ public class Problem13 implements EulerProblem{
             temp = (int)Math.floor((sum + temp)/10);
         }
         
-        return temp;
+        String answer = "" + temp;
+        temp = 10 - answer.length();
+        
+        for (int i = 0; i < temp; i++){
+            answer = answer + "" + C[i];
+        }
+        
+        return answer;
     }
     
     @Override
