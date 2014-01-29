@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public class Problem13 implements EulerProblem{
 
-    final static String FILE_NAME = "C:\\Users\\Ed\\Documents\\NetBeansProjects\\ProjectEuler\\src\\projecteuler\\Problem13.txt";
+    final static String FILE_NAME = "src\\projecteuler\\Problem13.txt";
     private int[][] _numbers;
     
     @Override
@@ -50,7 +50,7 @@ public class Problem13 implements EulerProblem{
         for (int i = 49; i>=0; i--){
             sum = 0;
             for (int j = 0; j < 150; j++){
-                sum = sum + _numbers[j][i];//A[i];
+                sum = sum + _numbers[j][i];
             }
             C[i] = (sum + temp)%10;
             temp = (int)Math.floor((sum + temp)/10);
