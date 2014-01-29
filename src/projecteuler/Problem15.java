@@ -43,12 +43,12 @@ public class Problem15 implements EulerProblem {
             }
         }
         
-        for (int i = 0; i < X; i++){
-            for (int j = 0; j < Y; j++){
-                System.out.print(grid[i][j] + " ");
-            }
-            System.out.println("");
-        }
+        //for (int i = 0; i < X; i++){
+        //    for (int j = 0; j < Y; j++){
+        //        System.out.print(grid[i][j] + " ");
+        //    }
+        //    System.out.println("");
+        //}
         
         return grid[0][0];
     }
