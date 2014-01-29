@@ -28,7 +28,7 @@ public class Problem13 implements EulerProblem{
         int temp = 0;
         int sum;
         
-        _numbers = new int[150][50];
+        _numbers = new int[100][50];
         
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME)))
         {
@@ -49,7 +49,7 @@ public class Problem13 implements EulerProblem{
         
         for (int i = 49; i>=0; i--){
             sum = 0;
-            for (int j = 0; j < 150; j++){
+            for (int j = 0; j < 100; j++){
                 sum = sum + _numbers[j][i];
             }
             C[i] = (sum + temp)%10;

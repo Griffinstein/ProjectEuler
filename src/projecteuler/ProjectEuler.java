@@ -76,9 +76,14 @@ public class ProjectEuler {
          *  @Problem 12: HighlyDivisibleTriangularNumber
          */   
           
-         EulerProblem solution = new Problem13() {};
-           System.out.println(solution.getSolution()); 
-         /*  @Problem 13: LargeSum
+         /*EulerProblem solution = new Problem13() {};
+         * System.out.println(solution.getSolution()); 
+         *  @Problem 13: LargeSum
+         */
+          
+         EulerProblem solution = new Problem14() {};
+          System.out.println(solution.getSolution()); 
+         /*  @Problem 14: LargeSum
          */
       }          
 }	
