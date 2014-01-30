@@ -26,10 +26,46 @@ public class Problem18 implements EulerProblem{
     
     private int MaximumPathSumI() {
         int answer = 0;
-        TreeNode tree = new TreeNode();
+        //TreeNode tree = new TreeNode();
         int temp;
-        int row = 2;
+        int row = 0;
+        int column;
+        //int row = 2;
+        int grid [][] = new int [15][15];
+
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME)))
+        {
+            String sCurrentLine;
+            
+            while ((sCurrentLine = br.readLine()) != null) {
+                column = 0;
+                for (int i = 0; i < sCurrentLine.length(); i+=3){
+                    temp = ((sCurrentLine.charAt(i) - '0') * 10) + (sCurrentLine.charAt(i+1) - '0');
+                    grid [row][column] = temp;
+                    column++;
+                }
+                row++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
         
+        for (int i = 13; i >= 0; i--){
+            for (int j = 14; j >= 0; j--){
+                if (j == 14){
+                    grid[i][j] = grid[i][j] + grid[i+1][j];
+                }
+                else{
+                    if (grid[i+1][j] > grid[i+1][j+1])
+                        grid[i][j] = grid[i][j] + grid[i+1][j];
+                    else
+                        grid[i][j] = grid[i][j] + grid[i+1][j+1];
+                }
+            }
+        }
+        
+        
+        /*
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME)))
         {
             String sCurrentLine;
@@ -46,8 +82,8 @@ public class Problem18 implements EulerProblem{
         } catch (IOException e) {
             e.printStackTrace();
         } 
-        
-        return answer;
+        */
+        return grid[0][0];
     }
     
 

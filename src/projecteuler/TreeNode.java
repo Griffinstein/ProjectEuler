@@ -17,19 +17,23 @@ public class TreeNode {
     private int value;
     private int sumValue = 0;
     private int level;
+    private static int numOfNodes = 0;
     
     public TreeNode(){
         level = 0;
+        numOfNodes++;
     }
     
     public TreeNode(int x){
         value = x;
+        numOfNodes++;
     }
 
     public TreeNode(int x, TreeNode p, int l){
         value = x;
         parent = p;
         level = l + 1;
+        numOfNodes++;
     }
     
     public void SetLeft(TreeNode l){
@@ -57,10 +61,16 @@ public class TreeNode {
     }
 
     public void InsertTreeValue(int x){
-        if (left == null && right == null)
-            InsertLeft(x);
-        else if (left != null && right == null)
-            InsertRight(x);
+        int temp = (int)Math.pow(2, level);
+        
+        if (temp < numOfNodes)
+            InsertTreeValue(x);
+        else {
+            if (left == null && right == null)
+                InsertLeft(x);
+            else if (left != null && right == null)
+                InsertRight(x);
+        }
     }
     
     public void InsertLeft(int x){
