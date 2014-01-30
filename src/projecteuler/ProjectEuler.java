@@ -101,9 +101,14 @@ public class ProjectEuler {
          *  @Problem 17: NumberLetterCounts
          */
           
-         EulerProblem solution = new Problem18() {};
+         /*EulerProblem solution = new Problem18() {};
+         * System.out.println(solution.getSolution()); 
+         *  @Problem 18: MaximumPathSumI
+         */       
+          
+         EulerProblem solution = new Problem67() {};
           System.out.println(solution.getSolution()); 
-         /*  @Problem 18: MaximumPathSumI
-         */          
+         /*  @Problem 67: MaximumPathSumII
+         */       
       }          
 }	
