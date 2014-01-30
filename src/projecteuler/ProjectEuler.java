@@ -96,9 +96,14 @@ public class ProjectEuler {
          *  @Problem 16: PowerDigitSum
          */
           
-         EulerProblem solution = new Problem17() {};
-          System.out.println(solution.getSolution()); 
-         /*  @Problem 17: NumberLetterCounts
+         /*EulerProblem solution = new Problem17() {};
+         * System.out.println(solution.getSolution()); 
+         *  @Problem 17: NumberLetterCounts
          */
+          
+         EulerProblem solution = new Problem18() {};
+          System.out.println(solution.getSolution()); 
+         /*  @Problem 18: MaximumPathSumI
+         */          
       }          
 }	

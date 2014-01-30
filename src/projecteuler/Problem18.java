@@ -1,0 +1,59 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package projecteuler;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import static projecteuler.Problem13.FILE_NAME;
+
+/**
+ *
+ * @author Ed
+ */
+public class Problem18 implements EulerProblem{
+
+    final static String FILE_NAME = "src\\projecteuler\\Problem18.txt";
+    
+    @Override
+    public String getSolution() {
+        return "" + MaximumPathSumI();
+    }
+    
+    private int MaximumPathSumI() {
+        int answer = 0;
+        TreeNode tree = new TreeNode();
+        int temp;
+        int row = 2;
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME)))
+        {
+            String sCurrentLine;
+            sCurrentLine = br.readLine();
+            tree.SetValue(Integer.parseInt(sCurrentLine));
+            
+            while ((sCurrentLine = br.readLine()) != null) {
+                for (int i = 0; i < sCurrentLine.length(); i+=3){
+                    temp = ((sCurrentLine.charAt(i) - '0') * 10) + (sCurrentLine.charAt(i+1) - '0');
+                    tree.InsertTreeValue(temp);
+                }
+                System.out.println();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+        
+        return answer;
+    }
+    
+
+    @Override
+    public String getAltSolution() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+}
