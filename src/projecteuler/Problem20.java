@@ -38,10 +38,6 @@ public class Problem20 implements EulerProblem{
                 }
             }
         }
-
-        //for (int i = 1; i <= 12; i++){
-        //    answer = answer * i;
-        //}
         
         for (int i = 499; i >= 0; i--){
             answer = answer + bignumber[i];
