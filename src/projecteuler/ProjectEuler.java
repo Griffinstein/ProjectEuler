@@ -105,15 +105,20 @@ public class ProjectEuler {
          * System.out.println(solution.getSolution()); 
          *  @Problem 18: MaximumPathSumI
          */       
+          
+         EulerProblem solution = new Problem19() {};
+          System.out.println(solution.getSolution()); 
+         /*  @Problem 19: CountingSundays
+         */   
    
          /*EulerProblem solution = new Problem20() {};
          * System.out.println(solution.getSolution()); 
          *  @Problem 20: FactorialDigitSum
          */   
 
-         EulerProblem solution = new Problem25() {};
-          System.out.println(solution.getSolution()); 
-         /*  @Problem 25: FibonacciNumberII
+         /*EulerProblem solution = new Problem25() {};
+         * System.out.println(solution.getSolution()); 
+         *  @Problem 25: FibonacciNumberII
          */
           
          /*EulerProblem solution = new Problem67() {};
