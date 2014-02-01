@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,7 +28,6 @@ public class Problem22 implements EulerProblem {
     
     private int NamesScores() {
         int answer = 0;
-        ArrayList<String> names = new ArrayList<>();
         String delims = ",";
         
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_NAME)))
@@ -36,6 +36,8 @@ public class Problem22 implements EulerProblem {
            
             String[] tokens = sCurrentLine.split(delims);
             int j = 0;
+            
+            tokens = MergeSort(tokens);
             
             for (int i = 0; i < tokens.length; i++){
                 answer = answer + (AlphabeticalValue(tokens[i]) * (i+1));
@@ -49,7 +51,76 @@ public class Problem22 implements EulerProblem {
     }
 
     private String[] MergeSort(String[] names){
-        return names;
+        if (names.length > 1){
+            int q = names.length/2;
+            String[] leftArray = Arrays.copyOfRange(names, 0, q);
+            String[] rightArray = Arrays.copyOfRange(names,q,names.length);
+            
+            leftArray = MergeSort(leftArray);
+            rightArray = MergeSort(rightArray);
+            
+            String[] result = merge(leftArray,rightArray);
+            
+            return result;
+        }
+        else
+            return names;
+    }
+    
+    private String[] merge(String[] l, String[] r) {
+        int lLen = l.length;
+        int rLen = r.length;
+        int lcount = 0;
+        int rcount = 0;
+        int count = 0;
+        String[] result = new String[lLen+rLen];
+        while (lLen > lcount || rLen > rcount){
+            if (lLen > lcount && rLen > rcount){
+                if (TestNames(l[lcount], r[rcount])){
+                    result[count] = l[lcount];
+                    lcount++;
+                    count++;
+                }
+                else{
+                    result[count] = r[rcount];
+                    rcount++;
+                    count++; 
+                }
+            }
+            else if (lLen > lcount){
+                result[count] = l[lcount];
+                lcount++;
+                count++;
+            }
+            else if (rLen > rcount){
+                result[count] = r[rcount];
+                rcount++;
+                count++;                
+            }
+        }
+        return result;
+    }
+    
+    private boolean TestNames(String nameLeft, String nameRight){
+        int length;
+        String left = nameLeft.toLowerCase();
+        String right = nameRight.toLowerCase();
+        
+        if (nameLeft.length() > nameRight.length())
+            length = nameLeft.length();
+        else
+            length = nameRight.length();
+        
+        for (int i = 0; i<length; i++){
+            if (left.charAt(i)!= right.charAt(i)){
+                if (left.charAt(i) < right.charAt(i))
+                    return true;
+                else
+                    return false;
+            }
+        }
+        
+        return true;
     }
     
     private int AlphabeticalValue(String name){
@@ -67,7 +138,7 @@ public class Problem22 implements EulerProblem {
         
         for (int i = 0; i < alphabetArray.length; i++) {
             if(alphabetArray[i]>0){
-                answer = answer + (i+1);
+                answer = answer + ((i+1) * alphabetArray[i]);
                 char ch = (char) (i+97);
                 //System.out.println(ch +"  : "+alphabetArray[i]);   //Show the result.
             }         
