@@ -9,7 +9,6 @@ package projecteuler;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import static projecteuler.Problem13.FILE_NAME;
 
 /**
  *
@@ -25,7 +24,6 @@ public class Problem18 implements EulerProblem{
     }
     
     private int MaximumPathSumI() {
-        int answer = 0;
         //TreeNode tree = new TreeNode();
         int temp;
         int row = 0;

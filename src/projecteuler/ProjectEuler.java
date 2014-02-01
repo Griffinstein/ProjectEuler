@@ -116,10 +116,15 @@ public class ProjectEuler {
          *  @Problem 20: FactorialDigitSum
          */   
 
-         EulerProblem solution = new Problem21() {};
-          System.out.println(solution.getSolution()); 
-         /*  @Problem 21: AmicableNumbers
+         /*EulerProblem solution = new Problem21() {};
+         * System.out.println(solution.getSolution()); 
+         *  @Problem 21: AmicableNumbers
          */   
+         
+         EulerProblem solution = new Problem22() {};
+          System.out.println(solution.getSolution()); 
+         /* @Problem 22: NamesScores()
+         */
           
          /*EulerProblem solution = new Problem25() {};
          * System.out.println(solution.getSolution()); 
