@@ -121,9 +121,14 @@ public class ProjectEuler {
          *  @Problem 21: AmicableNumbers
          */   
          
-         EulerProblem solution = new Problem22() {};
+         /*EulerProblem solution = new Problem22() {};
+         * System.out.println(solution.getSolution()); 
+         * @Problem 22: NamesScores()
+         */
+          
+         EulerProblem solution = new Problem23() {};
           System.out.println(solution.getSolution()); 
-         /* @Problem 22: NamesScores()
+         /* @Problem 23: NonAbundantSums()
          */
           
          /*EulerProblem solution = new Problem25() {};
