@@ -126,9 +126,14 @@ public class ProjectEuler {
          * @Problem 22: NamesScores()
          */
           
-         EulerProblem solution = new Problem23() {};
+         /*EulerProblem solution = new Problem23() {};
+         * System.out.println(solution.getSolution()); 
+         * @Problem 23: NonAbundantSums()
+         */
+
+         EulerProblem solution = new Problem24() {};
           System.out.println(solution.getSolution()); 
-         /* @Problem 23: NonAbundantSums()
+         /* @Problem 24: LexicographicPermutations()
          */
           
          /*EulerProblem solution = new Problem25() {};
