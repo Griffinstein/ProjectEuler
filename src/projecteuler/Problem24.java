@@ -141,27 +141,48 @@ public class Problem24 implements EulerProblem{
                                                 taken[j] = true;
 
                                                 answer++;
-                                                if (answer == 1000000)
+                                                if (answer == 1000000){
                                                     System.out.println(a+""+b+""+c+""+d+""+e+""+f+""+g+""+h+""+i+""+j);
+                                                    break;
+                                                }
 
                                                 taken[j] = false;
                                             }
+                                            if (answer == 1000000)
+                                                break;
+                                            
                                             taken[i] = false;
                                         }
+                                        if (answer == 1000000)
+                                            break;
                                         taken[h] = false;
                                     }  
+                                    if (answer == 1000000)
+                                        break;
                                     taken[g] = false;
                                 }  
+                                if (answer == 1000000)
+                                    break;
                                 taken[f] = false;
                             }  
+                            if (answer == 1000000)
+                                break;
                             taken[e] = false;
                         }  
+                        if (answer == 1000000)
+                            break;
                         taken[d] = false;
                     }   
+                    if (answer == 1000000)
+                        break;
                     taken[c] = false;
                 }   
+                if (answer == 1000000)
+                    break;
                 taken[b] = false;
             }    
+            if (answer == 1000000)
+                break;
             taken[a] = false;
         }
         
