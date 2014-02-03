@@ -131,14 +131,19 @@ public class ProjectEuler {
          * @Problem 23: NonAbundantSums()
          */
 
-         EulerProblem solution = new Problem24() {};
-          System.out.println(solution.getSolution()); 
-         /* @Problem 24: LexicographicPermutations()
+         /*EulerProblem solution = new Problem24() {};
+         * System.out.println(solution.getSolution()); 
+         * @Problem 24: LexicographicPermutations()
          */
           
          /*EulerProblem solution = new Problem25() {};
          * System.out.println(solution.getSolution()); 
          *  @Problem 25: FibonacciNumberII
+         */
+
+         EulerProblem solution = new Problem26() {};
+          System.out.println(solution.getSolution()); 
+         /*  @Problem 26: ReciprocalCycle
          */
           
          /*EulerProblem solution = new Problem67() {};
