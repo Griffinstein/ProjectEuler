@@ -146,9 +146,14 @@ public class ProjectEuler {
          *  @Problem 26: ReciprocalCycle
          */
           
-         EulerProblem solution = new Problem28() {};
+         /*EulerProblem solution = new Problem28() {};
+         * System.out.println(solution.getSolution()); 
+         *  @Problem 28: NumberSpiralDiagonals
+         */
+          
+         EulerProblem solution = new Problem48() {};
           System.out.println(solution.getSolution()); 
-         /*  @Problem 28: NumberSpiralDiagonals
+         /*  @Problem 48: SelfPowers
          */
           
          /*EulerProblem solution = new Problem67() {};
