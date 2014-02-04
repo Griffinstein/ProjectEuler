@@ -141,9 +141,14 @@ public class ProjectEuler {
          *  @Problem 25: FibonacciNumberII
          */
 
-         EulerProblem solution = new Problem26() {};
+         /*EulerProblem solution = new Problem26() {};
+         * System.out.println(solution.getSolution()); 
+         *  @Problem 26: ReciprocalCycle
+         */
+          
+         EulerProblem solution = new Problem28() {};
           System.out.println(solution.getSolution()); 
-         /*  @Problem 26: ReciprocalCycle
+         /*  @Problem 28: NumberSpiralDiagonals
          */
           
          /*EulerProblem solution = new Problem67() {};
