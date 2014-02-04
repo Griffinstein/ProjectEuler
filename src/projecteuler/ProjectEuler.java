@@ -151,14 +151,19 @@ public class ProjectEuler {
          *  @Problem 28: NumberSpiralDiagonals
          */
           
-         EulerProblem solution = new Problem48() {};
-          System.out.println(solution.getSolution()); 
-         /*  @Problem 48: SelfPowers
+         /*EulerProblem solution = new Problem48() {};
+         * System.out.println(solution.getSolution()); 
+         *  @Problem 48: SelfPowers
          */
           
          /*EulerProblem solution = new Problem67() {};
          * System.out.println(solution.getSolution()); 
          *  @Problem 67: MaximumPathSumII
          */       
+          
+          EulerProblem solution = new Problem96() {};
+          System.out.println(solution.getSolution()); 
+         /*  @Problem 96: SuDoku
+         */
       }          
 }	
