@@ -69,19 +69,13 @@ public class Problem28 implements EulerProblem{
             currentMove--;
         }
         
-        int j = 0;
-        int i = 0;
-        while(j < max && i < max){
+
+        for(int i = 0, j = 0; i < max; i++,j++){
             answer = answer + spiral[i][j];
-            i++;
-            j++;
         }
-        j = max-1;
-        i = 0;
-        while(j > -1 && i < max){
+
+         for(int i = 0, j = max-1; i < max; i++,j--){
             answer = answer + spiral[i][j];
-            i++;
-            j--;
         }
         
         X = (int)Math.floor((double)max/2);
