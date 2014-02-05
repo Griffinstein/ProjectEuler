@@ -65,12 +65,15 @@ public class Problem96 implements EulerProblem {
         int tempy = 0;
         int temp = 0;
         int tempcount = 0;
+        int foundSquares = 81;
         
         for (int j = 0; j<9; j++){
             for (int k = 0; k<9; k++){
                 grid[j][k] = mainGrid[num][j][k];
-                if (grid[j][k] != 0)
+                if (grid[j][k] != 0){
                     answers[j][k][0] = true;
+                    foundSquares--;
+                }
             }
         }
         
@@ -98,89 +101,72 @@ public class Problem96 implements EulerProblem {
             }
         }
         
-        
-        for (int j = 0; j<9; j++){
-            for (int k = 0; k<9; k++){
-                tempcount = 0;
-                
-                for (int i = 1; i<10; i++){
-                    if (answers[j][k][i] == true){
-                        tempcount++;
-                        temp = i;
-                    }
-                }
-
-                if (tempcount == 1){
-                    grid[j][k] = temp;
-                    answers[j][k][0] = true;
-                }
-
-
-                for (int l = 1; l<10; l++){
+        while (foundSquares>0){
+            for (int j = 0; j<9; j++){
+                for (int k = 0; k<9; k++){
                     tempcount = 0;
-                    for (int i = 0; i<9; i++){
-                        if (grid[j][i] == 0){
-                            if (answers[j][i][l] == false){
+
+                    ////CHECK IF NUMBER CAN ONLY GO i 
+                    if (grid[j][k] == 0){
+                        for (int i = 1; i<10; i++){
+                            if (answers[j][k][i] == false){
                                 tempcount++;
                                 temp = i;
                             }
                         }
-                        if (tempcount > 1)
-                            break;
                     }
 
                     if (tempcount == 1){
-                        grid[j][temp] = l;
-                        answers[j][temp][0] = true;
-                        
-                        for (int i = 0; i<9; i++){
-                            answers[j][i][l] = true;
-                        }
-                        for (int i = 0; i<9; i++){
-                            answers[i][temp][l] = true;
-                        }
-                        
-                        tempx = (int)Math.floor(j/3);
-                        tempy = (int)Math.floor(temp/3);
-                        for (int x = (tempx*3); x<((tempx*3)+3); x++){
-                            for (int y = (tempy*3); y<((tempy*3)+3); y++){
-                                answers[x][y][l] = true;
-                            }
-                        }
-                    }
-                }
+                        grid[j][k] = temp;
+                        answers[j][k][0] = true;
+                        foundSquares--;
 
-
-                for (int l = 1; l<10; l++){
-                    tempcount = 0;
-                    for (int i = 0; i<9; i++){
-                        if (grid[i][k] == 0){
-                            if (answers[i][k][l] == false){
-                                tempcount++;
-                                temp = i;
-                            }
-                        }
-                        if (tempcount > 1)
-                            break;
+                        UpdateAnswerArray(j, k, temp, answers);
                     }
 
-                    if (tempcount == 1){
-                        grid[temp][k] = l;
-                        answers[temp][k][0] = true;
-                        
+
+                    for (int l = 1; l<10; l++){
+                        tempcount = 0;
                         for (int i = 0; i<9; i++){
-                            answers[i][k][l] = true;
-                        }
-                        for (int i = 0; i<9; i++){
-                            answers[temp][i][l] = true;
-                        }
-                        
-                        tempx = (int)Math.floor(temp/3);
-                        tempy = (int)Math.floor(k/3);
-                        for (int x = (tempx*3); x<((tempx*3)+3); x++){
-                            for (int y = (tempy*3); y<((tempy*3)+3); y++){
-                                answers[x][y][l] = true;
+                            if (grid[j][i] == 0){
+                                if (answers[j][i][l] == false){
+                                    tempcount++;
+                                    temp = i;
+                                }
                             }
+                            if (tempcount > 1)
+                                break;
+                        }
+
+                        if (tempcount == 1){
+                            grid[j][temp] = l;
+                            answers[j][temp][0] = true;
+                            foundSquares--;
+
+                            UpdateAnswerArray(j, temp, l, answers);
+                        }
+                    }
+
+
+                    for (int l = 1; l<10; l++){
+                        tempcount = 0;
+                        for (int i = 0; i<9; i++){
+                            if (grid[i][k] == 0){
+                                if (answers[i][k][l] == false){
+                                    tempcount++;
+                                    temp = i;
+                                }
+                            }
+                            if (tempcount > 1)
+                                break;
+                        }
+
+                        if (tempcount == 1){
+                            grid[temp][k] = l;
+                            answers[temp][k][0] = true;
+                            foundSquares--;
+
+                            UpdateAnswerArray(temp, k, l, answers);
                         }
                     }
                 }
@@ -195,6 +181,27 @@ public class Problem96 implements EulerProblem {
         }
         
         answers = answers;
+    }
+    
+    private boolean[][][] UpdateAnswerArray(int x, int y, int num, boolean[][][] answers){
+        for (int i = 0; i<9; i++){
+            answers[x][i][num] = true;
+        }
+        
+        for (int i = 0; i<9; i++){
+            answers[i][y][num] = true;
+        }
+                       
+        
+        int tempx = (int)Math.floor(x/3);
+        int tempy = (int)Math.floor(y/3);
+        for (int i = (tempx*3); i<((tempx*3)+3); i++){
+            for (int j = (tempy*3); j<((tempy*3)+3); j++){
+                answers[i][j][num] = true;
+            }
+        }
+        
+        return answers;
     }
 
     @Override
