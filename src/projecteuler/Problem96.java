@@ -46,7 +46,9 @@ public class Problem96 implements EulerProblem {
             e.printStackTrace();
         } 
         
-        SolveGrid(grid, 0);
+        for (int i = 0; i<50; i++){
+            SolveGrid(grid, 5);
+        }
         
         for (int j = 0; j<9; j++){
             for (int k = 0; k<9; k++){
@@ -65,7 +67,10 @@ public class Problem96 implements EulerProblem {
         int tempy = 0;
         int temp = 0;
         int tempcount = 0;
+        int anothertemp = 0;
         int foundSquares = 81;
+        boolean[][] vert = new boolean[3][10];
+        boolean[][] horz = new boolean[3][10];
         
         for (int j = 0; j<9; j++){
             for (int k = 0; k<9; k++){
@@ -106,7 +111,7 @@ public class Problem96 implements EulerProblem {
                 for (int k = 0; k<9; k++){
                     tempcount = 0;
 
-                    ////CHECK IF NUMBER CAN ONLY GO i 
+                    ////CHECK IF A SQUARE CAN ONLY HOLD 1 NUMBER
                     if (grid[j][k] == 0){
                         for (int i = 1; i<10; i++){
                             if (answers[j][k][i] == false){
@@ -119,12 +124,13 @@ public class Problem96 implements EulerProblem {
                     if (tempcount == 1){
                         grid[j][k] = temp;
                         answers[j][k][0] = true;
+                        System.out.println((k+1) +  " " + (j+1) + " is: " + temp);
                         foundSquares--;
 
                         UpdateAnswerArray(j, k, temp, answers);
                     }
 
-
+                    ////CHECK IF A NUMBER CAN ONLY GO 1 PLACE IN A ROW
                     for (int l = 1; l<10; l++){
                         tempcount = 0;
                         for (int i = 0; i<9; i++){
@@ -141,13 +147,14 @@ public class Problem96 implements EulerProblem {
                         if (tempcount == 1){
                             grid[j][temp] = l;
                             answers[j][temp][0] = true;
+                            System.out.println((temp+1) +  " " + (j+1) + " is: " + l);
                             foundSquares--;
 
                             UpdateAnswerArray(j, temp, l, answers);
                         }
                     }
 
-
+                    ////CHECK IF A NUMBER CAN ONLY GO 1 PLACE IN A COLUMN
                     for (int l = 1; l<10; l++){
                         tempcount = 0;
                         for (int i = 0; i<9; i++){
@@ -164,15 +171,102 @@ public class Problem96 implements EulerProblem {
                         if (tempcount == 1){
                             grid[temp][k] = l;
                             answers[temp][k][0] = true;
+                            System.out.println((k+1) +  " " + (temp+1) + " is: " + l);
                             foundSquares--;
 
                             UpdateAnswerArray(temp, k, l, answers);
+                        }
+                    }
+                    
+                    ////CHECK IF A NUMBER CAN ONLY GO 1 PLACE IN A SQUARE
+                    tempx = (int)Math.floor(j/3);
+                    tempy = (int)Math.floor(k/3);
+                    for (int l = 1; l<10; l++){
+                        tempcount = 0;
+                        for (int x = (tempx*3); x<((tempx*3)+3); x++){
+                            for (int y = (tempy*3); y<((tempy*3)+3); y++){
+                                if (grid[x][y] == 0){
+                                    if (answers[x][y][l] == false){
+                                        tempcount++;
+                                        temp = x;
+                                        anothertemp = y;
+                                    }
+                                }
+                                if (tempcount > 1)
+                                    break;
+                            }
+                            if (tempcount > 1)
+                                break;
+                        }
+
+                        if (tempcount == 1){
+                            grid[temp][anothertemp] = l;
+                            answers[temp][anothertemp][0] = true;
+                            System.out.println((anothertemp+1) +  " " + (temp+1) + " is: " + l);
+                            foundSquares--;
+
+                            UpdateAnswerArray(temp, anothertemp, l, answers);
+                        }
+                    }
+                    
+                    ////CHECK IF A NUMBER CAN ONLY EXIST IN 1 COLUMN IN A SQUARE
+                    tempx = (int)Math.floor(j/3);
+                    tempy = (int)Math.floor(k/3);
+                    
+                    for (int l = 1; l<10; l++){
+                        temp = -1;
+                        for (int x = (tempx*3); x<((tempx*3)+3); x++){
+                            temp++;
+                            for (int y = (tempy*3); y<((tempy*3)+3); y++){
+                                if (grid[x][y] == 0){
+                                    if (!answers[x][y][l]){
+                                        horz[temp][l] = true;
+                                    }
+                                }
+                            }
+                        }
+                        anothertemp = -1;
+                        for (int y = (tempy*3); y<((tempy*3)+3); y++){
+                            anothertemp++;
+                            for (int x = (tempx*3); x<((tempx*3)+3); x++){
+                                if (grid[x][y] == 0){
+                                    if (!answers[x][y][l]){
+                                        vert[anothertemp][l] = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    for (int l = 1; l<10; l++){
+                        tempcount = 0;
+                        for (int i = 0; i<3; i++){
+                            if (horz[i][l]){
+                                tempcount++;
+                                temp = i;
+                            }
+                        }
+                        if (tempcount == 1){
+                            UpdateAnswerArrayExceptSquareRow((temp+(tempx*3)), l, answers, tempy);
+                        }
+                        
+                        tempcount = 0;
+                        for (int i = 0; i<3; i++){
+                            if (vert[i][l]){
+                                tempcount++;
+                                temp = i;
+                            }
+                        }
+                        if (tempcount == 1){
+                            UpdateAnswerArrayExceptSquareColumn((temp+(tempy*3)), l, answers, tempx);
                         }
                     }
                 }
             }
         }
         
+        
+        System.out.println("Printing grid " + (num + 1) + " solution.");
         for (int j = 0; j<9; j++){
             for (int k = 0; k<9; k++){
                 System.out.print(grid[j][k]);
@@ -204,6 +298,24 @@ public class Problem96 implements EulerProblem {
         return answers;
     }
 
+    private boolean[][][] UpdateAnswerArrayExceptSquareColumn(int colNum, int num, boolean[][][] answers, int badX){
+        for (int i = 0; i<9; i++){
+            if (i != badX && i != (badX+1) && i != (badX+2))
+                answers[i][colNum][num] = true;
+        }
+                               
+        return answers;
+    }
+    
+    private boolean[][][] UpdateAnswerArrayExceptSquareRow(int rowNum, int num, boolean[][][] answers, int badY){     
+        for (int i = 0; i<9; i++){
+            if (i != badY && i != (badY+1) && i != (badY+2))
+                answers[rowNum][i][num] = true;
+        }
+                               
+        return answers;
+    }
+    
     @Override
     public String getAltSolution() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
