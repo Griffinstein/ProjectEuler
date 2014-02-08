@@ -130,7 +130,7 @@ public class Problem96 implements EulerProblem {
                         UpdateAnswerArray(j, k, temp, answers);
                     }
 
-                    ////CHECK IF A NUMBER CAN ONLY GO 1 PLACE IN A ROW
+                    //////CHECK IF A NUMBER CAN ONLY GO 1 PLACE IN A ROW
                     for (int l = 1; l<10; l++){
                         tempcount = 0;
                         for (int i = 0; i<9; i++){
