@@ -9,7 +9,7 @@ package projecteuler;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-//NEED TO RESTUCTURE
+////NEED TO RESTUCTURE
 /**
  *
  * @author Ed
