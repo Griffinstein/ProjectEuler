@@ -88,12 +88,8 @@ public class Problem96 implements EulerProblem {
             
             Search(grid, answers);
         }
-        
-        if (foundSquares>0){
-            GuessAndTest(grid, answers);
-        }
-        
-        
+
+ 
         /*System.out.println("Printing grid " + (num + 1) + " solution.");
         for (int j = 0; j<9; j++){
             for (int k = 0; k<9; k++){
@@ -301,62 +297,8 @@ public class Problem96 implements EulerProblem {
                  else
                     System.out.println(i + "," + j + " is: " + grid[i][j]);
             }
-        }
-        
-        temp = temp;
-        
-        /*
-        tempx = (int)Math.floor(j/3);
-        tempy = (int)Math.floor(k/3);
-        for (int l = 1; l<10; l++){
-            temp = -1;
-            for (int x = (tempx*3); x<((tempx*3)+3); x++){
-                temp++;
-                for (int y = (tempy*3); y<((tempy*3)+3); y++){
-                    if (grid[x][y] == 0){
-                        if (!answers[x][y][l]){
-                            horz[temp][l] = true;
-                        }
-                    }
-                }
-            }
-            anothertemp = -1;
-            for (int y = (tempy*3); y<((tempy*3)+3); y++){
-                anothertemp++;
-                for (int x = (tempx*3); x<((tempx*3)+3); x++){
-                    if (grid[x][y] == 0){
-                        if (!answers[x][y][l]){
-                            vert[anothertemp][l] = true;
-                        }
-                    }
-                }
-            }
-        }
-
-        for (int l = 1; l<10; l++){
-            tempcount = 0;
-            for (int i = 0; i<3; i++){
-                if (horz[i][l]){
-                    tempcount++;
-                    temp = i;
-                }
-            }
-            if (tempcount == 1){
-                UpdateAnswerArrayExceptSquareRow((temp+(tempx*3)), l, answers, tempy);
-            }
-
-            tempcount = 0;
-            for (int i = 0; i<3; i++){
-                if (vert[i][l]){
-                    tempcount++;
-                    temp = i;
-                }
-            }
-            if (tempcount == 1){
-               //UpdateAnswerArrayExceptSquareColumn((temp+(tempy*3)), l, answers, tempx);
-            }
-        }
-        */
+        }*/
+    
     }
     
     private boolean[][][] UpdateAnswerArrayOnlySquareColumn(int num, boolean[][][] answers, int colNum, int rowSqu){
@@ -774,87 +716,6 @@ public class Problem96 implements EulerProblem {
                     }
                 }
             }
-    }
-    
-    private void GuessAndTest(int[][] grid,  boolean[][][] answers){
-        int numOfPossiblities = 9;
-        int temp = 0;
-        int tempx = 0;
-        int tempy = 0;
-        
-        for (int j = 0; j<9; j++){
-            for (int k = 0; k<9; k++){
-                if (grid[j][k] == 0){
-                    for (int i = 1; i<10; i++){
-                        if (!answers[j][k][i])
-                            temp++;
-                    }
-                    if (temp < numOfPossiblities){
-                        tempx = j;
-                        tempy = k;
-                        numOfPossiblities = temp;
-                    }
-                    temp = 0;
-                }
-            }
-        }
-        
-        for (int i = 1; i<10; i++){
-            if (!answers[tempx][tempy][i]){
-                if (Test(tempx, tempy, i, grid, answers)){
-                    break;
-                }
-            }
-        }
-    }
-    
-    private boolean Test (int testx, int testy, int testnum, int[][] grid, boolean[][][] answers){
-        int lastFound = 0;
-        int[][] newGrid = new int[9][9];
-        newGrid = grid;
-        newGrid[testx][testy] = testnum;
-        
-        boolean[][][] newAnswers = new boolean[9][9][10];
-        newAnswers[testx][testy][testnum] = true;
-        UpdateAnswerArray(testx, testy, testnum, newAnswers);
-        
-        while (foundSquares>0){
-            if (lastFound == foundSquares){
-                newAnswers = UndoTest(testx,testy,testnum, newAnswers);
-                newAnswers = RefreshAnswersArray(newAnswers, newGrid);
-                return false;
-            }
-            
-            lastFound = foundSquares;
-            
-            Search(newGrid, newAnswers);
-        }
-
-        grid = newGrid;
-        answers = newAnswers;
-        
-        return true;
-    }
-    
-    private boolean[][][] UndoTest(int x, int y, int num, boolean[][][] answers){
-        for (int i = 0; i<9; i++){
-            answers[x][i][num] = false;
-        }
-        
-        for (int i = 0; i<9; i++){
-            answers[i][y][num] = false;
-        }
-                       
-        
-        int tempx = (int)Math.floor(x/3);
-        int tempy = (int)Math.floor(y/3);
-        for (int i = (tempx*3); i<((tempx*3)+3); i++){
-            for (int j = (tempy*3); j<((tempy*3)+3); j++){
-                answers[i][j][num] = false;
-            }
-        }
-        
-        return answers;
     }
     
     @Override
