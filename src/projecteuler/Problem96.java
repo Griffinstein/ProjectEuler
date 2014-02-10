@@ -79,6 +79,37 @@ public class Problem96 implements EulerProblem {
             }
         }
         
+        answers = RefreshAnswersArray(answers, grid);
+        
+        while (foundSquares>0){
+            if (lastFound == foundSquares)
+                break;
+            
+            lastFound = foundSquares;
+            
+            Search(grid, answers);
+        }
+        
+        if (foundSquares>0){
+            GuessAndTest(grid, answers);
+        }
+        
+        
+        System.out.println("Printing grid " + (num + 1) + " solution.");
+        for (int j = 0; j<9; j++){
+            for (int k = 0; k<9; k++){
+                System.out.print(grid[j][k]);
+            }
+            System.out.println();
+        }
+        
+        answers = answers;
+    }
+    
+    private boolean[][][] RefreshAnswersArray(boolean[][][] answers, int[][] grid){
+        int tempx;
+        int tempy;
+        
         for (int j = 0; j<9; j++){
             for (int k = 0; k<9; k++){
                 if (grid[j][k] == 0){
@@ -102,30 +133,12 @@ public class Problem96 implements EulerProblem {
             }
         }
         
-        while (foundSquares>0){
-            if (lastFound == foundSquares){
-                GuessAndTest(grid, answers);
-                break;
-            }
-            
-            lastFound = foundSquares;
-            
-            Search(grid, answers);
-        }
-        
-        
-        System.out.println("Printing grid " + (num + 1) + " solution.");
-        for (int j = 0; j<9; j++){
-            for (int k = 0; k<9; k++){
-                System.out.print(grid[j][k]);
-            }
-            System.out.println();
-        }
-        
-        answers = answers;
+        return answers;
     }
     
     private boolean[][][] UpdateAnswerArray(int x, int y, int num, boolean[][][] answers){
+        foundSquares--;
+        
         for (int i = 0; i<9; i++){
             answers[x][i][num] = true;
         }
@@ -155,7 +168,7 @@ public class Problem96 implements EulerProblem {
         return answers;
     }
     
-    private boolean[][][] UpdateAnswerArrayExceptSquareRow(int rowNum, int num, boolean[][][] answers, int badY){     
+    private boolean[][][] UpdateAnswerArrayExceptSquareRow(int rowNum, int num, boolean[][][] answers, int badY){       
         for (int i = 0; i<9; i++){
             if (i != badY && i != (badY+1) && i != (badY+2))
                 answers[rowNum][i][num] = true;
@@ -192,7 +205,6 @@ public class Problem96 implements EulerProblem {
                         grid[j][k] = temp;
                         answers[j][k][0] = true;
                         //System.out.println((k+1) +  " " + (j+1) + " is: " + temp);
-                        foundSquares--;
 
                         UpdateAnswerArray(j, k, temp, answers);
                     }
@@ -215,7 +227,6 @@ public class Problem96 implements EulerProblem {
                             grid[j][temp] = l;
                             answers[j][temp][0] = true;
                             //System.out.println((temp+1) +  " " + (j+1) + " is: " + l);
-                            foundSquares--;
 
                             UpdateAnswerArray(j, temp, l, answers);
                         }
@@ -239,7 +250,6 @@ public class Problem96 implements EulerProblem {
                             grid[temp][k] = l;
                             answers[temp][k][0] = true;
                             //System.out.println((k+1) +  " " + (temp+1) + " is: " + l);
-                            foundSquares--;
 
                             UpdateAnswerArray(temp, k, l, answers);
                         }
@@ -270,7 +280,6 @@ public class Problem96 implements EulerProblem {
                             grid[temp][anothertemp] = l;
                             answers[temp][anothertemp][0] = true;
                             //System.out.println((anothertemp+1) +  " " + (temp+1) + " is: " + l);
-                            foundSquares--;
 
                             UpdateAnswerArray(temp, anothertemp, l, answers);
                         }
@@ -357,15 +366,60 @@ public class Problem96 implements EulerProblem {
         
         for (int i = 1; i<10; i++){
             if (!answers[tempx][tempy][i]){
-                if (test()){
+                if (Test(tempx, tempy, i, grid, answers)){
                     break;
                 }
             }
         }
     }
     
-    private boolean test (){
+    private boolean Test (int testx, int testy, int testnum, int[][] grid, boolean[][][] answers){
+        int lastFound = 0;
+        int[][] newGrid = new int[9][9];
+        newGrid = grid;
+        newGrid[testx][testy] = testnum;
+        
+        boolean[][][] newAnswers = new boolean[9][9][10];
+        newAnswers[testx][testy][testnum] = true;
+        UpdateAnswerArray(testx, testy, testnum, newAnswers);
+        
+        while (foundSquares>0){
+            if (lastFound == foundSquares){
+                newAnswers = UndoTest(testx,testy,testnum, newAnswers);
+                newAnswers = RefreshAnswersArray(newAnswers, newGrid);
+                return false;
+            }
+            
+            lastFound = foundSquares;
+            
+            Search(newGrid, newAnswers);
+        }
+
+        grid = newGrid;
+        answers = newAnswers;
+        
         return true;
+    }
+    
+    private boolean[][][] UndoTest(int x, int y, int num, boolean[][][] answers){
+        for (int i = 0; i<9; i++){
+            answers[x][i][num] = false;
+        }
+        
+        for (int i = 0; i<9; i++){
+            answers[i][y][num] = false;
+        }
+                       
+        
+        int tempx = (int)Math.floor(x/3);
+        int tempy = (int)Math.floor(y/3);
+        for (int i = (tempx*3); i<((tempx*3)+3); i++){
+            for (int j = (tempy*3); j<((tempy*3)+3); j++){
+                answers[i][j][num] = false;
+            }
+        }
+        
+        return answers;
     }
     
     @Override
