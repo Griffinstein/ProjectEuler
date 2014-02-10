@@ -85,6 +85,8 @@ public class Problem96 implements EulerProblem {
             if (lastFound == foundSquares){
                 tempx = tempx;
                 CheckImpliedSquares(grid, answers);
+                CheckForNakedPairs(grid, answers);
+                //CheckForNakedTriples(grid, answers);
                 CheckForXWings(grid,answers);
                 //break;
             }
@@ -420,12 +422,116 @@ public class Problem96 implements EulerProblem {
         return answers;
     }
     
+    private void CheckForNakedPairs(int[][] grid,  boolean[][][] answers){
+        int firstA = 0;
+        int secondA = 0;
+        int firstB = 0;
+        int secondB = 0;
+        int temp = 0;
+        
+        /*for (int i = 0; i<9; i++){
+            for (int j = 0; j<9; j++){
+                if (grid[i][j] == 0){
+                    System.out.print(i + "," + j + " can be: ");
+                    for (int k = 1; k<10; k++){
+                        if (!answers[i][j][k]){
+                            System.out.print(k + ", ");
+                        }
+                    }
+                    System.out.println();
+                }
+                 else
+                    System.out.println(i + "," + j + " is: " + grid[i][j]);
+            }
+        }*/
+        
+        for (int i = 0; i<9; i++){
+            for (int j = 0; j<8; j++) {
+                temp = 0;
+                if (grid [i][j] == 0){
+                    for (int l = 1; l<10; l++){
+                        if (!answers[i][j][l]){
+                            temp++;
+                            
+                            if (temp == 1)
+                                firstA = l;
+                            else if (temp == 2)
+                                secondA = l;
+                            else
+                                break;
+                        }
+                    }
+                }
+                
+                
+                
+                if (temp == 2){
+                    for (int k = j+1; k<9; k++){
+                        temp = 0;
+                        if (grid [i][k] == 0){
+                            for (int l = 1; l<10; l++){
+                                if (!answers[i][k][l]){
+                                    temp++;
+                                    
+                                    if (temp == 1)
+                                        firstB = l;
+                                    else if (temp == 2)
+                                        secondB = l;
+                                    else
+                                        break;
+                                }
+                            }
+                        }
+                        
+                        if (temp == 2 && firstA == firstB && secondA == secondB){
+                            UpdateAnswerArrayNakedPairRow(firstA, secondA, answers, i, j, k);
+                        }
+                    }
+                }
+            }
+        }
+        
+        /*for (int i = 0; i<9; i++){
+            for (int j = 0; j<9; j++){
+                if (grid[i][j] == 0){
+                    System.out.print(i + "," + j + " can be: ");
+                    for (int k = 1; k<10; k++){
+                        if (!answers[i][j][k]){
+                            System.out.print(k + ", ");
+                        }
+                    }
+                    System.out.println();
+                }
+                 else
+                    System.out.println(i + "," + j + " is: " + grid[i][j]);
+            }
+        }*/
+        
+        temp = temp;
+    }
+    
+    private boolean[][][] UpdateAnswerArrayNakedPairRow(int firstnum, int secondnum, boolean[][][] answers, int rowNum, int badA, int badB){
+        
+        for(int i = 0; i<9; i++){
+            if (i != badA && i != badB){
+                answers[rowNum][i][firstnum] = true;
+                answers[rowNum][i][secondnum] = true;
+            }
+        }
+        
+        return answers;
+    }
+    
     private void CheckForXWings(int[][] grid,  boolean[][][] answers){
         int temp;
         int colA = -1;
         int colB = -1;
+
+        int rowA = -1;
+        int rowB = -1;
         
         for (int l = 1; l<10; l++){
+            //FOR COLUMNS
             for (int x = 0; x<8; x++){
                 temp = 0;
                 for (int y = 0; y<9; y++){
@@ -464,6 +570,48 @@ public class Problem96 implements EulerProblem {
                     }
                 }
             }
+            
+            
+            //FOR ROWS
+            for (int x = 0; x<8; x++){
+                temp = 0;
+                for (int y = 0; y<9; y++){
+                    if (grid[y][x] == 0){
+                        if (!answers[y][x][l]){
+                            temp++;
+                            
+                            if (temp == 1)
+                                rowA = y;
+                            else if (temp == 2)
+                                rowB = y;
+                            else
+                                break;
+                        }
+                    }
+                }
+                
+                if (temp == 2){
+                    for (int y = x+1; y<9; y++){
+                        if (grid[rowA][y] == 0 && grid[rowB][y] == 0){
+                            if (!answers[rowA][y][l] && !answers[rowB][y][l]){
+                                temp = 0;
+                                for (int i = 0; i<9; i++){
+                                    if (grid[i][y] == 0){
+                                        if (!answers[i][y][l]){
+                                            temp++;
+                                        }
+                                        if (temp>2)
+                                            break;
+                                    }
+                                }
+                                if (temp == 2)
+                                    UpdateAnswerArrayXWingRow(l, answers, rowA, rowB, x, y);
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
     }
     
@@ -473,6 +621,18 @@ public class Problem96 implements EulerProblem {
             if (i != badA && i != badB){
                 answers[i][colA][num] = true;
                 answers[i][colB][num] = true;
+            }
+        }
+                               
+        return answers;
+    }
+    
+    private boolean[][][] UpdateAnswerArrayXWingRow(int num, boolean[][][] answers, int rowA, int rowB, int badA, int badB){       
+
+        for (int i = 0; i<9; i++){
+            if (i != badA && i != badB){
+                answers[rowA][i][num] = true;
+                answers[rowB][i][num] = true;
             }
         }
                                
