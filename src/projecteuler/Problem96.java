@@ -114,13 +114,13 @@ public class Problem96 implements EulerProblem {
         }
         
         
-       /* System.out.println("Printing grid " + (num + 1) + " solution.");
+        System.out.println("Printing grid " + (num + 1) + " solution.");
         for (int j = 0; j<9; j++){
             for (int k = 0; k<9; k++){
                 System.out.print(grid[j][k]);
             }
             System.out.println();
-        }*/
+        }
         
         answers = answers;
     }
@@ -333,7 +333,30 @@ public class Problem96 implements EulerProblem {
     }
     
     private void GuessAndTest(int[][] grid,  boolean[][][] answers){
+        int numOfPossiblities = 9;
+        int temp = 0;
+        int tempx = 0;
+        int tempy = 0;
         
+        for (int j = 0; j<9; j++){
+            for (int k = 0; k<9; k++){
+                if (grid[j][k] == 0){
+                    for (int i = 1; i<10; i++){
+                        if (!answers[j][k][i])
+                            temp++;
+                    }
+                    if (temp < numOfPossiblities){
+                        tempx = j;
+                        tempy = k;
+                        numOfPossiblities = temp;
+                    }
+                    temp = 0;
+                }
+            }
+        }
+        
+        tempx = tempx;
+                
         
     }
     
