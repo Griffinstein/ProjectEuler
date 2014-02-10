@@ -48,20 +48,13 @@ public class Problem96 implements EulerProblem {
         } 
         
         for (int i = 0; i<50; i++){
-            SolveGrid(grid, i);
+            answer = SolveGrid(grid, i, answer);
         }
-        
-        /*for (int j = 0; j<9; j++){
-            for (int k = 0; k<9; k++){
-                System.out.print(grid[0][j][k]);
-            }
-            System.out.println();
-        }*/
         
         return answer;
     }
     
-    private void SolveGrid(int[][][] mainGrid, int num){
+    private int SolveGrid(int[][][] mainGrid, int num, int answer){
         boolean[][][] answers = new boolean[9][9][10];
         int[][] grid = new int[9][9];
         int tempx = 0;
@@ -101,15 +94,19 @@ public class Problem96 implements EulerProblem {
         }
         
         
-        System.out.println("Printing grid " + (num + 1) + " solution.");
+        /*System.out.println("Printing grid " + (num + 1) + " solution.");
         for (int j = 0; j<9; j++){
             for (int k = 0; k<9; k++){
                 System.out.print(grid[j][k]);
             }
             System.out.println();
-        }
+        }*/
         
-        answers = answers;
+        int temp = (grid[0][0] * 100) + (grid[0][1] * 10) + grid[0][2];
+        
+        answer = answer + temp;
+        
+        return answer;
     }
     
     private boolean[][][] RefreshAnswersArray(boolean[][][] answers, int[][] grid){
