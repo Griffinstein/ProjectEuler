@@ -85,6 +85,7 @@ public class Problem96 implements EulerProblem {
             if (lastFound == foundSquares){
                 tempx = tempx;
                 CheckImpliedSquares(grid, answers);
+                CheckForXWings(grid,answers);
                 //break;
             }
             
@@ -413,6 +414,65 @@ public class Problem96 implements EulerProblem {
                 if (rowNum == 0 && i == 6 && num == 4)
                     i=i;    
                 answers[rowNum][i][num] = true;
+            }
+        }
+                               
+        return answers;
+    }
+    
+    private void CheckForXWings(int[][] grid,  boolean[][][] answers){
+        int temp;
+        int colA = -1;
+        int colB = -1;
+        
+        for (int l = 1; l<10; l++){
+            for (int x = 0; x<8; x++){
+                temp = 0;
+                for (int y = 0; y<9; y++){
+                    if (grid[x][y] == 0){
+                        if (!answers[x][y][l]){
+                            temp++;
+                            
+                            if (temp == 1)
+                                colA = y;
+                            else if (temp == 2)
+                                colB = y;
+                            else
+                                break;
+                        }
+                    }
+                }
+                
+                if (temp == 2){
+                    for (int y = x+1; y<9; y++){
+                        if (grid[y][colA] == 0 && grid[y][colB] == 0){
+                            if (!answers[y][colA][l] && !answers[y][colB][l]){
+                                temp = 0;
+                                for (int i = 0; i<9; i++){
+                                    if (grid[y][i] == 0){
+                                        if (!answers[y][i][l]){
+                                            temp++;
+                                        }
+                                        if (temp>2)
+                                            break;
+                                    }
+                                }
+                                if (temp == 2)
+                                    UpdateAnswerArrayXWingColumn(l, answers, colA, colB, x, y);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private boolean[][][] UpdateAnswerArrayXWingColumn(int num, boolean[][][] answers, int colA, int colB, int badA, int badB){       
+
+        for (int i = 0; i<9; i++){
+            if (i != badA && i != badB){
+                answers[i][colA][num] = true;
+                answers[i][colB][num] = true;
             }
         }
                                
