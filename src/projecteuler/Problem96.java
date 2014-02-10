@@ -82,8 +82,10 @@ public class Problem96 implements EulerProblem {
         answers = RefreshAnswersArray(answers, grid);
         
         while (foundSquares>0){
-            if (lastFound == foundSquares)
+            if (lastFound == foundSquares){
+                CheckImpliedSquares(grid, answers);
                 break;
+            }
             
             lastFound = foundSquares;
             
@@ -91,7 +93,7 @@ public class Problem96 implements EulerProblem {
         }
         
         if (foundSquares>0){
-            GuessAndTest(grid, answers);
+            //GuessAndTest(grid, answers);
         }
         
         
@@ -159,19 +161,189 @@ public class Problem96 implements EulerProblem {
         return answers;
     }
 
-    private boolean[][][] UpdateAnswerArrayExceptSquareColumn(int colNum, int num, boolean[][][] answers, int badX){
+    private void CheckImpliedSquares(int[][] grid,  boolean[][][] answers){
+        int tempy = 0;
+        int tempx = 0;
+        int temp = 0;
+        int tempcount = 0;
+        int anothertemp = 0;
+        boolean[][] vert = new boolean[3][10];
+        boolean[][] horz = new boolean[3][10];
+        
         for (int i = 0; i<9; i++){
-            if (i != badX && i != (badX+1) && i != (badX+2))
+            for (int j = 0; j<9; j++){
+                if (grid[i][j] == 0){
+                    System.out.print(i + "," + j + " can be: ");
+                    for (int k = 1; k<10; k++){
+                        if (!answers[i][j][k]){
+                            System.out.print(k + ", ");
+                        }
+                    }
+                    System.out.println();
+                }
+                 else
+                    System.out.println(i + "," + j + " is: " + grid[i][j]);
+            }
+        }
+        
+        
+        for (int i = 0; i<3; i++){//COLUMN OF SQUARES
+            for (int j = 0; j<3; j++){//ROW OF SQUARES
+                for (int l = 1; l<10; l++){//EACH NUMBER
+                    temp = -1;
+                    anothertemp = -1;
+                    for (int x = (i*3); x < ((i*3)+3); x++){
+                        temp++;
+                        for (int y = (j*3); y < ((j*3)+3); y++){
+                            if (grid[x][y] == 0){
+                                if (!answers[x][y][l]){
+                                    horz[temp][l] = true;
+                                }
+                            }
+                        }
+                    }
+                    
+                    for (int y = (i*3); y < ((i*3)+3); y++){
+                        anothertemp++;
+                        for (int x = (j*3); x < ((j*3)+3); x++){
+                            if (grid[x][y] == 0){
+                                if (!answers[x][y][l]){
+                                    vert[anothertemp][l] = true;
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+                
+                for (int l = 1; l<10; l++){
+                    tempcount = 0;
+                    for (int x = 0; x<3; x++){
+                        if (horz[x][l]){
+                            tempcount++;
+                            temp = x;
+                        }
+                    }
+                    if (tempcount == 1){
+                        UpdateAnswerArrayExceptSquareRow((temp+(i*3)), l, answers, j);
+                    }
+
+                    tempcount = 0;
+                    for (int x = 0; x<3; x++){
+                        if (vert[x][l]){
+                            tempcount++;
+                            temp = x;
+                        }
+                    }
+                    if (tempcount == 1){
+                       UpdateAnswerArrayExceptSquareColumn((temp+(j*3)), l, answers, i);
+                    }
+                }
+                
+                for (int a = 0; a<3; a++){
+                    for (int b = 0; b<10; b++){
+                        horz[a][b] = false;
+                        vert[a][b] = false;
+                    }
+                }
+            }
+        }
+        
+        for (int i = 0; i<9; i++){
+            for (int j = 0; j<9; j++){
+                if (grid[i][j] == 0){
+                    System.out.print(i + "," + j + " can be: ");
+                    for (int k = 1; k<10; k++){
+                        if (!answers[i][j][k]){
+                            System.out.print(k + ", ");
+                        }
+                    }
+                    System.out.println();
+                }
+                 else
+                    System.out.println(i + "," + j + " is: " + grid[i][j]);
+            }
+        }
+        
+        temp = temp;
+        
+        /*
+        tempx = (int)Math.floor(j/3);
+        tempy = (int)Math.floor(k/3);
+        for (int l = 1; l<10; l++){
+            temp = -1;
+            for (int x = (tempx*3); x<((tempx*3)+3); x++){
+                temp++;
+                for (int y = (tempy*3); y<((tempy*3)+3); y++){
+                    if (grid[x][y] == 0){
+                        if (!answers[x][y][l]){
+                            horz[temp][l] = true;
+                        }
+                    }
+                }
+            }
+            anothertemp = -1;
+            for (int y = (tempy*3); y<((tempy*3)+3); y++){
+                anothertemp++;
+                for (int x = (tempx*3); x<((tempx*3)+3); x++){
+                    if (grid[x][y] == 0){
+                        if (!answers[x][y][l]){
+                            vert[anothertemp][l] = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int l = 1; l<10; l++){
+            tempcount = 0;
+            for (int i = 0; i<3; i++){
+                if (horz[i][l]){
+                    tempcount++;
+                    temp = i;
+                }
+            }
+            if (tempcount == 1){
+                UpdateAnswerArrayExceptSquareRow((temp+(tempx*3)), l, answers, tempy);
+            }
+
+            tempcount = 0;
+            for (int i = 0; i<3; i++){
+                if (vert[i][l]){
+                    tempcount++;
+                    temp = i;
+                }
+            }
+            if (tempcount == 1){
+               //UpdateAnswerArrayExceptSquareColumn((temp+(tempy*3)), l, answers, tempx);
+            }
+        }
+        */
+    }
+    
+    private boolean[][][] UpdateAnswerArrayExceptSquareColumn(int colNum, int num, boolean[][][] answers, int badX){
+        int xPos = badX * 3;
+        
+        for (int i = 0; i<9; i++){
+            if (i != xPos && i != (xPos+1) && i != (xPos+2)){
+                if (i == 3 && colNum == 4 && num == 9)
+                    i=i;   
                 answers[i][colNum][num] = true;
+            }
         }
                                
         return answers;
     }
     
     private boolean[][][] UpdateAnswerArrayExceptSquareRow(int rowNum, int num, boolean[][][] answers, int badY){       
+        int yPos = badY * 3;
+        
         for (int i = 0; i<9; i++){
-            if (i != badY && i != (badY+1) && i != (badY+2))
+            if (i != yPos && i != (yPos+1) && i != (yPos+2)){
+                if (rowNum == 0 && i == 6 && num == 4)
+                    i=i;    
                 answers[rowNum][i][num] = true;
+            }
         }
                                
         return answers;
@@ -284,59 +456,6 @@ public class Problem96 implements EulerProblem {
                             UpdateAnswerArray(temp, anothertemp, l, answers);
                         }
                     }
-                    
-                    ////CHECK IF A NUMBER CAN ONLY EXIST IN 1 COLUMN OR ROW IN A SQUARE
-                    //if (jesus){
-                    tempx = (int)Math.floor(j/3);
-                    tempy = (int)Math.floor(k/3);
-                    for (int l = 1; l<10; l++){
-                        temp = -1;
-                        for (int x = (tempx*3); x<((tempx*3)+3); x++){
-                            temp++;
-                            for (int y = (tempy*3); y<((tempy*3)+3); y++){
-                                if (grid[x][y] == 0){
-                                    if (!answers[x][y][l]){
-                                        horz[temp][l] = true;
-                                    }
-                                }
-                            }
-                        }
-                        anothertemp = -1;
-                        for (int y = (tempy*3); y<((tempy*3)+3); y++){
-                            anothertemp++;
-                            for (int x = (tempx*3); x<((tempx*3)+3); x++){
-                                if (grid[x][y] == 0){
-                                    if (!answers[x][y][l]){
-                                        vert[anothertemp][l] = true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    
-                    for (int l = 1; l<10; l++){
-                        tempcount = 0;
-                        for (int i = 0; i<3; i++){
-                            if (horz[i][l]){
-                                tempcount++;
-                                temp = i;
-                            }
-                        }
-                        if (tempcount == 1){
-                            //UpdateAnswerArrayExceptSquareRow((temp+(tempx*3)), l, answers, tempy);
-                        }
-                        
-                        tempcount = 0;
-                        for (int i = 0; i<3; i++){
-                            if (vert[i][l]){
-                                tempcount++;
-                                temp = i;
-                            }
-                        }
-                        if (tempcount == 1){
-                           // UpdateAnswerArrayExceptSquareColumn((temp+(tempy*3)), l, answers, tempx);
-                        }
-                    }//*/
                 }
             }
     }
