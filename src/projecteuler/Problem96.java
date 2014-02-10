@@ -48,7 +48,7 @@ public class Problem96 implements EulerProblem {
         } 
         
         for (int i = 0; i<50; i++){
-            SolveGrid(grid, 6);
+            SolveGrid(grid, i);
         }
         
         /*for (int j = 0; j<9; j++){
@@ -171,7 +171,7 @@ public class Problem96 implements EulerProblem {
         boolean[][] vert = new boolean[3][10];
         boolean[][] horz = new boolean[3][10];
         
-        for (int i = 0; i<9; i++){
+        /*for (int i = 0; i<9; i++){
             for (int j = 0; j<9; j++){
                 if (grid[i][j] == 0){
                     System.out.print(i + "," + j + " can be: ");
@@ -185,14 +185,13 @@ public class Problem96 implements EulerProblem {
                  else
                     System.out.println(i + "," + j + " is: " + grid[i][j]);
             }
-        }
+        }*/
         
         
         for (int i = 0; i<3; i++){//COLUMN OF SQUARES
             for (int j = 0; j<3; j++){//ROW OF SQUARES
                 for (int l = 1; l<10; l++){//EACH NUMBER
                     temp = -1;
-                    anothertemp = -1;
                     for (int x = (i*3); x < ((i*3)+3); x++){
                         temp++;
                         for (int y = (j*3); y < ((j*3)+3); y++){
@@ -204,9 +203,10 @@ public class Problem96 implements EulerProblem {
                         }
                     }
                     
-                    for (int y = (i*3); y < ((i*3)+3); y++){
-                        anothertemp++;
-                        for (int x = (j*3); x < ((j*3)+3); x++){
+                    for (int x = (i*3); x < ((i*3)+3); x++){
+                        anothertemp = -1;
+                        for (int y = (j*3); y < ((j*3)+3); y++){
+                            anothertemp++;
                             if (grid[x][y] == 0){
                                 if (!answers[x][y][l]){
                                     vert[anothertemp][l] = true;
@@ -250,7 +250,7 @@ public class Problem96 implements EulerProblem {
             }
         }
         
-        for (int i = 0; i<9; i++){
+        /*for (int i = 0; i<9; i++){
             for (int j = 0; j<9; j++){
                 if (grid[i][j] == 0){
                     System.out.print(i + "," + j + " can be: ");
