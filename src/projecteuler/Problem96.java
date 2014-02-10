@@ -355,9 +355,17 @@ public class Problem96 implements EulerProblem {
             }
         }
         
-        tempx = tempx;
-                
-        
+        for (int i = 1; i<10; i++){
+            if (!answers[tempx][tempy][i]){
+                if (test()){
+                    break;
+                }
+            }
+        }
+    }
+    
+    private boolean test (){
+        return true;
     }
     
     @Override
