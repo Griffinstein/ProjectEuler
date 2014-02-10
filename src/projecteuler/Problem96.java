@@ -48,7 +48,7 @@ public class Problem96 implements EulerProblem {
         } 
         
         for (int i = 0; i<50; i++){
-            SolveGrid(grid, i);
+            SolveGrid(grid, 6);
         }
         
         /*for (int j = 0; j<9; j++){
@@ -83,8 +83,9 @@ public class Problem96 implements EulerProblem {
         
         while (foundSquares>0){
             if (lastFound == foundSquares){
+                tempx = tempx;
                 CheckImpliedSquares(grid, answers);
-                break;
+                //break;
             }
             
             lastFound = foundSquares;
@@ -93,7 +94,7 @@ public class Problem96 implements EulerProblem {
         }
         
         if (foundSquares>0){
-            //GuessAndTest(grid, answers);
+            GuessAndTest(grid, answers);
         }
         
         
@@ -326,7 +327,7 @@ public class Problem96 implements EulerProblem {
         
         for (int i = 0; i<9; i++){
             if (i != xPos && i != (xPos+1) && i != (xPos+2)){
-                if (i == 3 && colNum == 4 && num == 9)
+                if (i == 1 && colNum == 2 && num == 7)
                     i=i;   
                 answers[i][colNum][num] = true;
             }
