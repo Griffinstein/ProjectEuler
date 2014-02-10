@@ -250,6 +250,43 @@ public class Problem96 implements EulerProblem {
             }
         }
         
+        int currentGrid;
+        
+        for (int l = 1; l<10; l++){
+            for (int x = 0; x<9; x++){
+                currentGrid = -1;
+                for (int y = 0; y<9; y++){
+                    if (grid[x][y] == 0){
+                        if (!answers[x][y][l]){
+                            if (currentGrid == -1)
+                                currentGrid = (int)Math.floor(y/3);
+                            else if (currentGrid != (int)Math.floor(y/3))
+                                break;
+                        }
+                        if (currentGrid != -1 && y == 8)
+                            UpdateAnswerArrayOnlySquareRow(l, answers, x, currentGrid);
+                    }
+                }
+            }
+            
+            for (int x = 0; x<9; x++){
+                currentGrid = -1;
+                for (int y = 0; y<9; y++){
+                    if (grid[y][x] == 0){
+                        if (!answers[y][x][l]){
+                            if (currentGrid == -1)
+                                currentGrid = (int)Math.floor(y/3);
+                            else if (currentGrid != (int)Math.floor(y/3))
+                                break;
+                        }
+                        if (currentGrid != -1 && y == 8)
+                            UpdateAnswerArrayOnlySquareColumn(l, answers, x, currentGrid);
+                    }
+                }
+            }
+        }
+        
+        
         /*for (int i = 0; i<9; i++){
             for (int j = 0; j<9; j++){
                 if (grid[i][j] == 0){
@@ -322,6 +359,22 @@ public class Problem96 implements EulerProblem {
         */
     }
     
+    private boolean[][][] UpdateAnswerArrayOnlySquareColumn(int num, boolean[][][] answers, int colNum, int rowSqu){
+        
+        
+        int tempx = rowSqu;
+        int tempy = (int)Math.floor(colNum/3);
+
+        for (int x = (tempx*3); x<((tempx*3)+3); x++){
+            for (int y = (tempy*3); y<((tempy*3)+3); y++){
+                if (y != colNum)
+                    answers[x][y][num] = true;
+            }
+        }
+
+        return answers;
+    }
+    
     private boolean[][][] UpdateAnswerArrayExceptSquareColumn(int colNum, int num, boolean[][][] answers, int badX){
         int xPos = badX * 3;
         
@@ -333,6 +386,22 @@ public class Problem96 implements EulerProblem {
             }
         }
                                
+        return answers;
+    }
+    
+    private boolean[][][] UpdateAnswerArrayOnlySquareRow(int num, boolean[][][] answers, int rowNum, int colSqu){
+        
+        
+        int tempx = (int)Math.floor(rowNum/3);
+        int tempy = colSqu;
+
+        for (int x = (tempx*3); x<((tempx*3)+3); x++){
+            for (int y = (tempy*3); y<((tempy*3)+3); y++){
+                if (x != rowNum)
+                    answers[x][y][num] = true;
+            }
+        }
+
         return answers;
     }
     
