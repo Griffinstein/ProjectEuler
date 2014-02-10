@@ -429,22 +429,6 @@ public class Problem96 implements EulerProblem {
         int secondB = 0;
         int temp = 0;
         
-        /*for (int i = 0; i<9; i++){
-            for (int j = 0; j<9; j++){
-                if (grid[i][j] == 0){
-                    System.out.print(i + "," + j + " can be: ");
-                    for (int k = 1; k<10; k++){
-                        if (!answers[i][j][k]){
-                            System.out.print(k + ", ");
-                        }
-                    }
-                    System.out.println();
-                }
-                 else
-                    System.out.println(i + "," + j + " is: " + grid[i][j]);
-            }
-        }*/
-        
         for (int i = 0; i<9; i++){
             for (int j = 0; j<8; j++) {
                 temp = 0;
@@ -490,24 +474,57 @@ public class Problem96 implements EulerProblem {
                 }
             }
         }
-        
-        /*for (int i = 0; i<9; i++){
-            for (int j = 0; j<9; j++){
-                if (grid[i][j] == 0){
-                    System.out.print(i + "," + j + " can be: ");
-                    for (int k = 1; k<10; k++){
-                        if (!answers[i][j][k]){
-                            System.out.print(k + ", ");
+
+        for (int i = 0; i<9; i++){
+            for (int j = 0; j<8; j++) {
+                temp = 0;
+                if (grid [j][i] == 0){
+                    for (int l = 1; l<10; l++){
+                        if (!answers[j][i][l]){
+                            temp++;
+                            
+                            if (temp == 1)
+                                firstA = l;
+                            else if (temp == 2)
+                                secondA = l;
+                            else
+                                break;
                         }
                     }
-                    System.out.println();
                 }
-                 else
-                    System.out.println(i + "," + j + " is: " + grid[i][j]);
+                
+                
+                
+                if (temp == 2){
+                    for (int k = j+1; k<9; k++){
+                        temp = 0;
+                        if (grid [k][i] == 0){
+                            for (int l = 1; l<10; l++){
+                                if (!answers[k][i][l]){
+                                    temp++;
+                                    
+                                    if (temp == 1)
+                                        firstB = l;
+                                    else if (temp == 2)
+                                        secondB = l;
+                                    else
+                                        break;
+                                }
+                            }
+                        }
+                        
+                        if (temp == 2 && firstA == firstB && secondA == secondB){
+                            UpdateAnswerArrayNakedPairColumn(firstA, secondA, answers, i, j, k);
+                        }
+                    }
+                }
             }
-        }*/
+        }
         
-        temp = temp;
+        
+        
+        
+        
     }
     
     private boolean[][][] UpdateAnswerArrayNakedPairRow(int firstnum, int secondnum, boolean[][][] answers, int rowNum, int badA, int badB){
@@ -516,6 +533,18 @@ public class Problem96 implements EulerProblem {
             if (i != badA && i != badB){
                 answers[rowNum][i][firstnum] = true;
                 answers[rowNum][i][secondnum] = true;
+            }
+        }
+        
+        return answers;
+    }
+    
+    private boolean[][][] UpdateAnswerArrayNakedPairColumn(int firstnum, int secondnum, boolean[][][] answers, int colNum, int badA, int badB){
+        
+        for(int i = 0; i<9; i++){
+            if (i != badA && i != badB){
+                answers[i][colNum][firstnum] = true;
+                answers[i][colNum][secondnum] = true;
             }
         }
         
