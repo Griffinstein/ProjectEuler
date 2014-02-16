@@ -19,12 +19,45 @@ public class Problem26 implements EulerProblem{
 
     private int ReciprocalCycles(){
         int answer = 0;
+        int length;
         double temp;
+        String number;
+        String[] parts;
         
-        for (int i = 1; i<1000; i++){
+        for (int i = 2; i<11; i++){
             temp = (double)1/i;
-            System.out.println(temp);
+            number = String.valueOf(temp);
+            
+            parts = number.split("\\.");
+  
+            length = parts[1].length();
+            
+            if (length>answer)
+                temp = Repeater(length, temp);
         }
+        
+        return answer;
+    }
+    
+    
+    private int Repeater(int length, double demicalnum){
+        int answer = 0;
+        int head = 0;
+        int tail = 0;
+        int temp;
+        int[] array = new int[length];
+        
+        for (int i = 1; i<=length; i++){
+            demicalnum = demicalnum*10;
+            temp = (int)(demicalnum);
+            demicalnum = demicalnum - temp;
+            temp = temp;
+            temp = (temp%10);
+            array[i-1] = temp;
+        }
+        
+        
+        
         
         return answer;
     }

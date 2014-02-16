@@ -141,9 +141,9 @@ public class ProjectEuler {
          *  @Problem 25: FibonacciNumberII
          */
 
-         /*EulerProblem solution = new Problem26() {};
-         * System.out.println(solution.getSolution()); 
-         *  @Problem 26: ReciprocalCycle
+         EulerProblem solution = new Problem26() {};
+          System.out.println(solution.getSolution()); 
+         /*  @Problem 26: ReciprocalCycle
          */
           
          /*EulerProblem solution = new Problem28() {};
@@ -161,9 +161,9 @@ public class ProjectEuler {
          *  @Problem 67: MaximumPathSumII
          */       
           
-          EulerProblem solution = new Problem96() {};
-          System.out.println(solution.getSolution()); 
-         /*  @Problem 96: SuDoku
+          /*EulerProblem solution = new Problem96() {};
+          *System.out.println(solution.getSolution()); 
+         *  @Problem 96: SuDoku
          */
       }          
 }	
