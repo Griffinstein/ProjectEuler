@@ -6,6 +6,8 @@
 
 package projecteuler;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Ed
@@ -19,13 +21,20 @@ public class Problem26 implements EulerProblem{
 
     private int ReciprocalCycles(){
         int answer = 0;
+        int count = 0;
         int length;
-        double temp;
+        BigDecimal temp;
+        int otherTemp;
         String number;
         String[] parts;
+        BigDecimal a = new BigDecimal("1");
+        BigDecimal b;
         
-        for (int i = 2; i<11; i++){
-            temp = (double)1/i;
+        for (int i = 2; i<1000; i++){
+            b = new BigDecimal(i);
+            
+            temp = a.divide(b,100, BigDecimal.ROUND_HALF_UP);
+            
             number = String.valueOf(temp);
             
             parts = number.split("\\.");
@@ -33,9 +42,11 @@ public class Problem26 implements EulerProblem{
             length = parts[1].length();
             
             if (length>answer){
-                temp = Repeater(length, temp);
-                if (temp > answer)
-                    answer = (int)temp;
+                otherTemp = Repeater(length, parts[1]);
+                if (otherTemp > count){
+                    count = otherTemp;
+                    answer = i;
+                }
             }
         }
         
@@ -43,7 +54,7 @@ public class Problem26 implements EulerProblem{
     }
     
     
-    private int Repeater(int length, double demicalnum){
+    private int Repeater(int length, String demicalnum){
         int answer = 0;
         int head = 0;
         int tail = 0;
@@ -52,13 +63,8 @@ public class Problem26 implements EulerProblem{
         int startTail;
         int[] array = new int[length];
         
-        for (int i = 1; i<=length; i++){
-            demicalnum = demicalnum*10;
-            temp = (int)(demicalnum);
-            demicalnum = demicalnum - temp;
-            temp = temp;
-            temp = (temp%10);
-            array[i-1] = temp;
+        for (int i = 0; i<length; i++){
+            array[i] = demicalnum.charAt(i) - '0';
         }
         
 
@@ -74,10 +80,12 @@ public class Problem26 implements EulerProblem{
                     head++;
                     tail++;
                     count++;
+                    if (head == length || tail == length)
+                        break;
                 }
                 
                 if (head == startTail){
-                    if (j<length-1){
+                    if (tail<length-1){
                         if (array[head+1] == array[tail+1])
                             return count;
                     }                    
@@ -90,6 +98,15 @@ public class Problem26 implements EulerProblem{
             head++;
             i = head;
         }
+        
+        return answer;
+    }
+    
+    private int[] longDivision(int i){
+        int[] answer = new int[100];
+        int reminder = 0;
+        int leftover;
+        
         
         
         return answer;
