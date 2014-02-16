@@ -32,8 +32,11 @@ public class Problem26 implements EulerProblem{
   
             length = parts[1].length();
             
-            if (length>answer)
+            if (length>answer){
                 temp = Repeater(length, temp);
+                if (temp > answer)
+                    answer = (int)temp;
+            }
         }
         
         return answer;
@@ -45,6 +48,8 @@ public class Problem26 implements EulerProblem{
         int head = 0;
         int tail = 0;
         int temp;
+        int count = 0;
+        int startTail;
         int[] array = new int[length];
         
         for (int i = 1; i<=length; i++){
@@ -56,7 +61,35 @@ public class Problem26 implements EulerProblem{
             array[i-1] = temp;
         }
         
-        
+
+        for (int i = 0; i<length-1; i++){
+            head = i;
+            tail = head;
+            count = 0;
+            
+            for (int j = i+1; j<length; j++){
+                tail = j;
+                startTail = j;
+                while (array[head] == array[tail] && head != startTail){
+                    head++;
+                    tail++;
+                    count++;
+                }
+                
+                if (head == startTail){
+                    if (j<length-1){
+                        if (array[head+1] == array[tail+1])
+                            return count;
+                    }                    
+                }
+                
+                head = i;
+                count = 0;
+            }
+            
+            head++;
+            i = head;
+        }
         
         
         return answer;
