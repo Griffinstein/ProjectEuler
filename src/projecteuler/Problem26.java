@@ -33,7 +33,7 @@ public class Problem26 implements EulerProblem{
         for (int i = 2; i<1000; i++){
             b = new BigDecimal(i);
             
-            temp = a.divide(b,100, BigDecimal.ROUND_HALF_UP);
+            temp = a.divide(b,2000, BigDecimal.ROUND_HALF_UP);
             
             number = String.valueOf(temp);
             
@@ -56,10 +56,10 @@ public class Problem26 implements EulerProblem{
     
     private int Repeater(int length, String demicalnum){
         int answer = 0;
-        int head = 0;
-        int tail = 0;
+        int head ;
+        int tail;
         int temp;
-        int count = 0;
+        int count;
         int startTail;
         int[] array = new int[length];
         
@@ -70,7 +70,6 @@ public class Problem26 implements EulerProblem{
 
         for (int i = 0; i<length-1; i++){
             head = i;
-            tail = head;
             count = 0;
             
             for (int j = i+1; j<length; j++){
